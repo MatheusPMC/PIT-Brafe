@@ -23,44 +23,49 @@
 			</nav>
 		</div>
 	</header>
-	
-	<main class="intro">
-		<h1>Cafés com a cara<br>do Brasil</h1>
-		<p>Direto das fazendas de Minas Gerais</p>
-	</main>
-	
-	<section class="sobre">
-		<h2>Uma Mistura de</h2>
-		<div class="container">
-			<div class="sobre-item">
-				<img src="img/cafe-1.jpg">
-				<h3>amor</h3>
-			</div>
-			<div class="sobre-item">
-				<img src="img/cafe-2.jpg">
-				<h3>perfeição</h3>
-			</div>
-		</div>
-		<p>O café é uma bebida produzida a partir dos grãos torrados do fruto do cafeeiro. É servido tradicionalm
-aente quente, mas também pode ser consumido gelado. Ele é um estimulante, por possuir cafeína — geralmente 80 a 140 mg para cada 207 ml dependendo do método de preparação.</p>
-	</section>
+
 	
 	<section class="produtos">
 		<div class="container">
-			<div class="produtos-item">
-				<h2 class="produtos-paulista">Paulista</h2>
-				<p>As condições climáticas não eram as melhores nessa primeira escolha e, entre 1800 e 1850, tentou-se o cultivo noutras regiões: o João Alberto Castelo Branco trouxe mudas do Pará</p>
-			</div>
-			<div class="produtos-item">
-				<h2 class="produtos-carioca">Carioca</h2>
-				<p>As condições climáticas não eram as melhores nessa primeira escolha e, entre 1800 e 1850, tentou-se o cultivo noutras regiões: o João Alberto Castelo Branco trouxe mudas do Pará</p>
-			</div>
-			<div class="produtos-item">
-				<h2 class="produtos-mineiro">Mineiro</h2>
-				<p>As condições climáticas não eram as melhores nessa primeira escolha e, entre 1800 e 1850, tentou-se o cultivo noutras regiões: o João Alberto Castelo Branco trouxe mudas do Pará</p>
-			</div>
-		</div>
-		<a class="produtos-btn" href="#">Saiba Mais</a>
+			<h2>Cadastrar</h2>
+			<form id="loginForm">
+				<label for="username">Username:</label><br>
+				<input type="text" id="username" name="username"><br>
+				<label for="password">Password:</label><br>
+				<input type="password" id="password" name="password"><br><br>
+				<input type="submit" value="Login">
+			</form>
+		
+			<div id="errorMessage" style="color: red; display: none;"></div>
+		
+			<script>
+				document.getElementById('loginForm').addEventListener('submit', function(event) {
+					event.preventDefault(); // Evita o envio do formulário padrão
+					const formData = new FormData(this); // Obtém os dados do formulário
+		
+					// Faz uma solicitação POST para o backend
+					fetch('http://localhost:8080/cadastrar', {
+						method: 'POST',
+						body: formData
+					})
+					.then(response => {
+						if (!response.ok) {
+							throw new Error('Falha na solicitação de cadastro');
+						}
+						return response.json();
+					})
+					.then(data => {
+						// Lida com a resposta do backend
+						console.log(data);
+					})
+					.catch(error => {
+						// Exibe mensagem de erro
+						document.getElementById('errorMessage').innerText = 'Erro ao fazer login. Por favor, tente novamente.';
+						document.getElementById('errorMessage').style.display = 'block';
+						console.error('Erro:', error);
+					});
+				});
+			</script>
 	</section>
 	
 	<section class="locais">
@@ -115,7 +120,7 @@ aente quente, mas também pode ser consumido gelado. Ele é um estimulante, por 
 	
 	<footer class="footer">
 		<div class="container">
-			<p>Este é um projeto PIT: Matheus do Prado Marques da Costa. RGM: 23867078. Faculdade: Unifran.</p>
+			<p>Este é um projeto PIT. Matheus do Prado Marques da Costa. <br>RGM: 23867078. <br>Faculdade: Unifran.</p>
 			<div class="footer-img">
 				<img src="img/brafe.png" alt="Brafé">
 			</div>
