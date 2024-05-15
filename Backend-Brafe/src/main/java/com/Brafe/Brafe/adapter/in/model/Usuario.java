@@ -1,4 +1,4 @@
-package com.Brafe.Brafe.adapter.in.controller;
+package com.Brafe.Brafe.adapter.in.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
