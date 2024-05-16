@@ -15,7 +15,7 @@ public class UsuarioController {
     public ResponseEntity<Usuario> login(@RequestBody Login loginRequest) {
 
         System.out.println(loginRequest);
-        if (loginRequest.getUsername().equalsIgnoreCase("matheus")) {
+        if (loginRequest.getEmail().equalsIgnoreCase("matheus@test.com.br")) {
             Usuario usuario = new Usuario();
             usuario.setTestando("testando");
             usuario.setUsername("Matheus");
