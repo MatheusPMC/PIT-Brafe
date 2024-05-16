@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Brafé</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="css/menu.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
+
+	<style>
+        .produtoteste {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 20px;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+<body>
+	
+	<header class="menu">
+		<div class="container">
+			<a class="menu-logo" href="index.html"><img src="img/brafe.png" alt="Brafé"></a>	
+			<nav class="menu-nav">
+				<ul>
+					<li><a href="login.html">Login</a></li>
+					<li><a href="cadastrar.html">Cadastrar</a></li>
+					<li><a href="produto.html">Produtos</a></li>
+					<li><a href="contato.html">Contato</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<section class="produtotestes">
+        <header>
+            <h1>Produtos</h1>
+            <div class="container">
+                <div id="carrinhoData"></div>
+                <div id="produtos-container"></div>
+            </div>
+        </header>
+    </section>
+	<script>
+		// Recuperar dados do sessionStorage
+		const carrinhoData = JSON.parse(sessionStorage.getItem('carrinhoData'));
+
+		if (!carrinhoData) {
+			// Se não houver dados no carrinho, redirecionar para a página de login
+			window.location.href = 'login.html';
+		} else {
+			console.log(carrinhoData)
+			// Exibir uma mensagem de boas-vindas
+			document.getElementById('carrinhoData').innerText = `Bem-vindo, aqui estão seus produtos:`;
+
+			// Obter o contêiner de produtos
+			const container = document.getElementById('produtos-container');
+
+	
+
+			// Iterar sobre os produtos e adicioná-los ao contêiner
+			carrinhoData.produtos.forEach(produto => {
+				// Cria um elemento de div para cada produto
+				const produtoDiv = document.createElement('div');
+				produtoDiv.className = 'produtoteste';
+
+				// Adiciona o conteúdo do produto
+				produtoDiv.innerHTML = `
+					<h2>${produto.nome}</h2>
+					<p>${produto.dados}</p>
+					<p>Preço: R$ ${produto.preco.toFixed(2)}</p>
+					<p>Quantidade: ${produto.quantidade}</p>
+				`;
+
+				// Adiciona o div do produto ao contêiner
+				container.appendChild(produtoDiv);
+			});
+
+
+			console.log(carrinhoData.frete)
+			const containerFrete = document.getElementById('produtos-container');
+			const financeiroDiv = document.createElement('div');
+			financeiroDiv.className = 'produtoteste';
+
+			financeiroDiv.innerHTML = `
+				<h3>Valor Compra: R$ ${carrinhoData.valorCompra}</h3>
+				<h3>Valor Frete: R$ ${carrinhoData.frete}</h3>
+				<h3>Valor Total: R$ ${carrinhoData.valorTotal.toFixed(2)}</h3>
+				`;
+
+			containerFrete.appendChild(financeiroDiv)
+		}
+	</script>
+
+	<section class="assine">
+		<div class="container">
+			<div class="assine-info">
+				<h2>Assine Nossa Newsletter</h2>
+				<p>promoções e eventos mensais</p>
+			</div>
+			<form>
+				<label>E-mail</label>
+				<input type="text" placeholder="Digite seu e-mail">
+				<button type="submit">Enviar</button>
+			</form>
+		</div>
+	</section>
+	
+	<footer class="footer">
+		<div class="container">
+			<p>Este é um projeto PIT. Matheus do Prado Marques da Costa. <br>RGM: 23867078. <br>Faculdade: Unifran.</p>
+			<div class="footer-img">
+				<img src="img/brafe.png" alt="Brafé">
+			</div>
+		</div>
+	</footer>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
