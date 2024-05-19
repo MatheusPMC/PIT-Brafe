@@ -17,6 +17,7 @@ public class UsuarioController {
         System.out.println(loginRequest);
         if (loginRequest.getEmail().equalsIgnoreCase("matheus@test.com.br")) {
             Usuario usuario = new Usuario();
+            usuario.setId(1L);
             usuario.setTestando("testando");
             usuario.setUsername("Matheus");
             usuario.setTestando2("testando2");

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Brafé</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="css/menu.css">
+	<link rel="stylesheet" type="text/css" href="css/minhaConta.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
+
+</head>
+
+<header class="menu">
+    <div class="container">
+        <a class="menu-logo" href="index.html"><img src="img/brafe.png" alt="Brafé"></a>	
+        <nav class="menu-nav">
+            <ul>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="cadastrar.html">Cadastrar</a></li>
+                <li><a href="minha-conta.html">Minha Conta</a></li>
+                <li><a href="produto.html">Produtos</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<body>
+
+
+	<div class="container">
+        <section class="minhaConta">
+            <h1>Minha Conta</h1>
+            <div id="minhaConta-container"></div>
+
+            <script>
+                // Recuperar dados do sessionStorage
+                const userData = JSON.parse(sessionStorage.getItem('userData'));
+
+                if (!userData) {
+                    // Se não houver dados de usuário, redirecionar para a página de login
+                    window.location.href = 'login.html';
+                } else {
+                    // Exibir os dados do usuário
+                    const conteinerMinhaConta = document.getElementById('minhaConta-container');
+                    const minhaContaDiv = document.createElement('div');
+                    minhaContaDiv.className = 'minhaConta';
+
+                    minhaContaDiv.innerHTML = `
+                        <h3>Nome: ${userData.username}</h3>
+                        <h3>E-Mail: ${userData.testando}</h3>
+                        <h3>Nome Completo: ${userData.username}</h3>
+                        <h3>CPF: ${userData.username}</h3>
+                        <br>
+                        <h2>Endereço: </h2>
+                        <h3>Rua: ${userData.username}</h3>
+                        <h3>Número da Rua: ${userData.username}</h3>
+                        <h3>Bairro: ${userData.username}</h3>
+                        <h3>Cep: ${userData.username}</h3>
+                    `;
+
+                    conteinerMinhaConta.appendChild(minhaContaDiv);
+                }
+            </script>
+        </section>
+
+        <section class="minhaConta">
+            <form id="cadastroForm">
+                <label for="email">E-Mail:</label><br>
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required><br>
+
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" placeholder="Digite seu password" required><br><br>
+
+                <label for="nomeCompleto">Nome Completo:</label><br>
+                <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Digite seu nome completo" required><br>
+
+                <label for="cpf">CPF:</label><br>
+                <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required><br><br>
+
+                <div class="minhaConta-container">
+                    <h3>Endereço:</h3>
+                </div>
+
+                <label for="rua">Rua:</label><br>
+                <input type="text" id="rua" name="rua" placeholder="Digite o nome da rua" required><br>
+
+                <label for="numero">Número:</label><br>
+                <input type="text" id="numero" name="numero" placeholder="Digite o número da rua" required><br>
+
+                <label for="bairro">Bairro:</label><br>
+                <input type="text" id="bairro" name="bairro" placeholder="Digite o nome do bairro" required><br>
+
+                <label for="cep">CEP:</label><br>
+                <input type="text" id="cep" name="cep" placeholder="Digite o CEP" required><br><br>
+
+                <button type="submit">Cadastrar</button>
+            </form>
+
+            <div id="errorMessage" style="color: red; display: none;"></div>
+
+            <script>
+                document.getElementById('cadastroForm').addEventListener('submit', async function(event) {
+                    event.preventDefault();
+
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+                    const nomeCompleto = document.getElementById('nomeCompleto').value;
+                    const cpf = document.getElementById('cpf').value;
+                    const rua = document.getElementById('rua').value;
+                    const numero = document.getElementById('numero').value;
+                    const bairro = document.getElementById('bairro').value;
+                    const cep = document.getElementById('cep').value;
+
+                    try {
+                        const response = await fetch('http://localhost:8080/cadastro', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ email, password, nomeCompleto, cpf, rua, numero, bairro, cep })
+                        });
+
+                        if (response.status === 201) {
+                            const data = await response.json();
+                            // Salvar dados no sessionStorage
+                            sessionStorage.setItem('userData', JSON.stringify(data));
+                            window.location.href = 'minha-conta.html';
+                        } else {
+                            alert('Cadastro failed');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('An error occurred');
+                    }
+                });
+            </script>
+        </section>
+    </div>
+	
+	<section class="assine">
+		<div class="container">
+			<div class="assine-info">
+				<h2>Assine Nossa Newsletter</h2>
+				<p>promoções e eventos mensais</p>
+			</div>
+			<form>
+				<label>E-mail</label>
+				<input type="text" placeholder="Digite seu e-mail">
+				<button type="submit">Enviar</button>
+			</form>
+		</div>
+	</section>
+	
+	<footer class="footer">
+		<div class="container">
+			<p>Este é um projeto PIT. Matheus do Prado Marques da Costa. <br>RGM: 23867078. <br>Faculdade: Unifran.</p>
+			<div class="footer-img">
+				<img src="img/brafe.png" alt="Brafé">
+			</div>
+		</div>
+	</footer>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

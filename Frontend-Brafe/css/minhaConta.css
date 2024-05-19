@@ -1,0 +1,16 @@
+/* Sobre */
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+}
+.minhaConta {
+	flex: 1;
+	padding: 20px;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	background-color: #f9f9f9;
+}
+

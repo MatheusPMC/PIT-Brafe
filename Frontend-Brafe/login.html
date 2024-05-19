@@ -14,21 +14,21 @@
     </head>
 </head>
 
+<header class="menu">
+    <div class="container">
+        <a class="menu-logo" href="index.html"><img src="img/brafe.png" alt="Brafé"></a>	
+        <nav class="menu-nav">
+            <ul>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="cadastrar.html">Cadastrar</a></li>
+                <li><a href="minha-conta.html">Minha Conta</a></li>
+                <li><a href="produto.html">Produtos</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 <body>
-    
-    <header class="menu">
-        <div class="container">
-            <a class="menu-logo" href="index.html"><img src="img/brafe.png" alt="Brafé"></a>    
-            <nav class="menu-nav">
-                <ul>
-					<li><a href="login.html">Login</a></li>
-					<li><a href="cadastrar.html">Cadastrar</a></li>
-					<li><a href="produto.html">Produtos</a></li>
-					<li><a href="contato.html">Contato</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+
 
     <section class="assine">
         <div class="container">
@@ -39,7 +39,7 @@
                 <label for="email">E-Mail:</label><br>
                 <input type="email" id="email" name="email" placeholder="Digite seu e-mail"><br>
                 <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password" placeholder="Digite seu password"><br><br>
+                <input type="password" id="password" name="password" placeholder="Digite seu password" required minlength="6">
                 <button type="submit">Logar</button>
             </form>
             <div id="errorMessage" style="color: red; display: none;"></div>
@@ -62,7 +62,7 @@
                                 const data = await response.json();
                                 // Salvar dados no sessionStorage
                                 sessionStorage.setItem('userData', JSON.stringify(data));
-                                window.location.href = 'produto.html';
+                                window.location.href = 'minha-conta.html';
                             } else {
                                 alert('Login failed');
                             }

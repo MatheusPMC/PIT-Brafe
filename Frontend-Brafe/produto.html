@@ -9,7 +9,6 @@
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
 </head>
 <body>
-	
 	<header class="menu">
 		<div class="container">
 			<a class="menu-logo" href="index.html"><img src="img/brafe.png" alt="Brafé"></a>	
@@ -23,10 +22,10 @@
 			</nav>
 		</div>
 	</header>
-	<section class="produtos">
+	<section class="sub-menu">
 		<header>
 			<h1>Produtos</h1>
-			<div class="container">
+			<div>
 				<div id="userData"></div>
 					<script>
 						// Recuperar dados do localStorage
@@ -43,17 +42,19 @@
 				</div>
 			</div>
 		</header>
+	</section>
+		<section class="produtos">
 		<form id="carrinhoForm">
-			<ul>
+			<ul class="produtos-item">
 				<li class="produtos-item">
 					<input type="hidden" name="produto1_nome" value="Capuccino">
 					<input type="hidden" name="produto1_preco" value="2.45">
 					<input type="hidden" name="produto1_dados" value="Café novo no estilo Cappuccino">
 					<img src="img/cafe-5.jpg" alt="Café 2">
 					<ul>
-						<li><span>Nome</span> Capuccino</li>
-						<li><span>Preço</span> R$ 2,45</li>
-						<li><span>Dados</span> Café novo no estilo Cappuccino</li>
+						<li><span>Nome:</span> Capuccino</li>
+						<li><span>Preço:</span> R$ 2,45</li>
+						<li><span>Dados:</span> Café novo no estilo Cappuccino</li>
 					</ul>
 					<div class="quantidade">
 						<label for="produto1_quantidade">Quantidade:</label>
@@ -69,9 +70,9 @@
 					<input type="hidden" name="produto2_dados" value="Café forte e encorpado">
 					<img src="img/cafe-3.jpg" alt="Café 3">
 					<ul>
-						<li><span>Nome</span> Espresso</li>
-						<li><span>Preço</span> R$ 1,99</li>
-						<li><span>Dados</span> Café forte e encorpado</li>
+						<li><span>Nome:</span> Espresso</li>
+						<li><span>Preço:</span> R$ 1,99</li>
+						<li><span>Dados:</span> Café forte e encorpado</li>
 					</ul>
 					<div class="quantidade">
 						<label for="produto2_quantidade">Quantidade:</label>
@@ -87,9 +88,9 @@
 					<input type="hidden" name="produto3_dados" value="Café Nescafe">
 					<img src="img/cafe-4.jpg" alt="Café 3">
 					<ul>
-						<li><span>Nome</span> Nescafe</li>
-						<li><span>Preço</span> R$ 10,99</li>
-						<li><span>Dados</span> Café Nescafe</li>
+						<li><span>Nome:</span> Nescafe</li>
+						<li><span>Preço:</span> R$ 10,99</li>
+						<li><span>Dados:</span> Café Nescafe</li>
 					</ul>
 					<div class="quantidade">
 						<label for="produto3_quantidade">Quantidade:</label>
@@ -99,24 +100,23 @@
 					</div>
 				</li>
 
-				<!-- <li class="produtos-item">
-					<input type="hidden" name="produto4_nome" value="Personalite">
-					<input type="hidden" name="produto4_preco" value="19.99">
-					<input type="hidden" name="produto4_dados" value="Café Personalite">
-					<img src="img/cafe-5.jpg" alt="Café 3">
+				<li class="produtos-item">
+					<input type="hidden" name="produto4_nome" value="Espresso">
+					<input type="hidden" name="produto4_preco" value="1.99">
+					<input type="hidden" name="produto4_dados" value="Café forte e encorpado">
+					<img src="img/cafe-3.jpg" alt="Café 3">
 					<ul>
-						<li><span>Nome</span> Personalite</li>
-						<li><span>Preço</span> R$ 19,99</li>
-						<li><span>Dados</span> Café Personalite</li>
+						<li><span>Nome:</span> Espresso</li>
+						<li><span>Preço:</span> R$ 1,99</li>
+						<li><span>Dados:</span> Café forte e encorpado</li>
 					</ul>
 					<div class="quantidade">
 						<label for="produto4_quantidade">Quantidade:</label>
 						<button type="button" onclick="alterarQuantidade('produto4', -1)">-</button>
 						<input type="number" id="produto4_quantidade" name="produto4_quantidade" value="0" min="0">
 						<button type="button" onclick="alterarQuantidade('produto4', 1)">+</button>
-						<input type="text" id="produto4_manual" name="produto4_manual" placeholder="Adicionar manualmente">
 					</div>
-				</li> -->
+				</li>
 			</ul>
 		
 			<button class="adicionar-produtos" type="submit">Adicionar ao Carrinho</button>

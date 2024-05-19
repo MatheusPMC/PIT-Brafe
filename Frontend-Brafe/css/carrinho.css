@@ -1,0 +1,83 @@
+/* Sobre */
+
+.carrinho {
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin: 60px;
+	border-radius: 5px;
+}
+
+.carrinho h1 {
+	padding-left: 60px;
+}
+
+.carrinho div .carrinho {
+	align-self: center;
+	padding: 40px 40px;
+	padding-left: 180px;
+	display: flex;
+    grid-template-columns: repeat(4, 1fr);
+
+}
+
+.carrinho h3 {
+	padding-right: 30px;
+}
+
+.carrinho p {
+	padding: 0px 0px;
+	padding-left: 0px;
+	padding-right: 40px;
+	margin-right: 50px;
+}
+
+.sub-menu {
+	background-color: #e7e4d8;
+	flex: 1;
+	padding: 20px 10px;
+}
+
+.sub-menu header {
+	display: flex;
+}
+
+.sub-menu h1 {
+	font-size: 2.25em;
+	flex-grow: 1;
+	margin-left: 200px;
+}
+
+.sub-menu div {
+	margin-top: 3px;
+	font-size: 1.15em;
+	flex-grow: 0;
+	margin-right: 200px;
+}
+
+
+.sub-menu h1 {
+	font-size: 2.25em;
+	flex-grow: 1;
+	margin-left: 400px;
+}
+
+.sub-menu div {
+	margin-top: 3px;
+	font-size: 1.15em;
+	flex-grow: 0;
+	margin-right: 200px;
+}
+
+.comprar {
+	background: #c17139;
+	color: #e7e4d8;
+	font-size: 1.125em;
+	font-family: Courier, monospace;
+	text-transform: uppercase;
+	padding: 15px 20px;
+	border-radius: 4px;
+	text-align: right;
+	display: flex;
+	align-self: center;
+	margin-left: 450px;
+}

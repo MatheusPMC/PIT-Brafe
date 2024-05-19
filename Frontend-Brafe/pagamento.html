@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Brafé</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <title>Brafé</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="css/menu.css">
+        <link rel="stylesheet" type="text/css" href="css/sobre.css">
+        <link rel="stylesheet" type="text/css" href="css/footer.css">
+        <link rel="stylesheet" type="text/css" href="css/mostruario.css">
+    </head>
+
+    <!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #ccc;
+            color: #333;
+        }
+        .btn-secondary:hover {
+            background-color: #b3b3b3;
+        }
+    </style> -->
+</head>
+
+<body>
+    
+    <header class="menu">
+        <div class="container">
+            <a class="menu-logo" href="index.html"><img src="img/brafe.png" alt="Brafé"></a>    
+            <nav class="menu-nav">
+                <ul>
+					<li><a href="login.html">Login</a></li>
+					<li><a href="cadastrar.html">Cadastrar</a></li>
+					<li><a href="produto.html">Produtos</a></li>
+					<li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="assine">
+        <div class="container">
+            <div class="assine-info">
+                <h2>Pagamento:</h2>
+            </div>
+            <!-- <form id="loginForm">
+                <label for="email">E-Mail:</label><br>
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail"><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" placeholder="Digite seu password"><br><br>
+                <button type="submit">Logar</button>
+            </form>
+            <div id="errorMessage" style="color: red; display: none;"></div>
+                <script>
+                    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+                        event.preventDefault();
+                        const email = document.getElementById('email').value;
+                        const password = document.getElementById('password').value;
+            
+                        try {
+                            const response = await fetch('http://localhost:8080/login', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ email, password })
+                            });
+            
+                            if (response.status === 200) {
+                                const data = await response.json();
+                                // Salvar dados no sessionStorage
+                                sessionStorage.setItem('userData', JSON.stringify(data));
+                                window.location.href = 'produto.html';
+                            } else {
+                                alert('Login failed');
+                            }
+                        } catch (error) {
+                            console.error('Error:', error);
+                            alert('An error occurred');
+                        }
+                    });
+                </script>
+            </div> -->
+        </div>
+    </section>
+    
+    <section class="sobre">
+        <div class="container">
+            <form id="checkout-form" action="http://localhost:8080/pagamento" method="POST">
+                <label for="card-number">Número do Cartão:</label>
+                <input type="text" id="card-number" name="card-number" required>
+                <label for="expiration-date">Data de Expiração (MM/AA):</label>
+                <input type="text" id="expiration-date" name="expiration-date" required>
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required>
+                <label for="amount">Parcela:</label>
+                <input type="number" id="amount" name="amount" required>
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-primary">Finalizar Compra</button>
+                    <button class="btn btn-secondary" onclick="window.location.href='produto.html'">Cancelar Compra</button>
+                    </div>
+            </form>
+        </div>
+    </section>
+    
+
+    <section class="produtos">
+		<div class="container">
+			<div class="produtos-item">
+				<h2 class="produtos-paulista">Paulista</h2>
+				<p>As condições climáticas não eram as melhores nessa primeira escolha e, entre 1800 e 1850, tentou-se o cultivo noutras regiões: o João Alberto Castelo Branco trouxe mudas do Pará</p>
+			</div>
+			<div class="produtos-item">
+				<h2 class="produtos-carioca">Carioca</h2>
+				<p>As condições climáticas não eram as melhores nessa primeira escolha e, entre 1800 e 1850, tentou-se o cultivo noutras regiões: o João Alberto Castelo Branco trouxe mudas do Pará</p>
+			</div>
+			<div class="produtos-item">
+				<h2 class="produtos-mineiro">Mineiro</h2>
+				<p>As condições climáticas não eram as melhores nessa primeira escolha e, entre 1800 e 1850, tentou-se o cultivo noutras regiões: o João Alberto Castelo Branco trouxe mudas do Pará</p>
+			</div>
+		</div>
+		<a class="produtos-btn" href="#">Saiba Mais</a>
+	</section>
+
+
+	<section class="assine">
+		<div class="container">
+			<div class="assine-info">
+				<h2>Assine Nossa Newsletter</h2>
+				<p>promoções e eventos mensais</p>
+			</div>
+			<form>
+				<label>E-mail</label>
+				<input type="text" placeholder="Digite seu e-mail">
+				<button type="submit">Enviar</button>
+			</form>
+		</div>
+	</section>
+	
+	<footer class="footer">
+		<div class="container">
+			<p>Este é um projeto PIT. Matheus do Prado Marques da Costa. <br>RGM: 23867078. <br>Faculdade: Unifran.</p>
+			<div class="footer-img">
+				<img src="img/brafe.png" alt="Brafé">
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

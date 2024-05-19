@@ -5,17 +5,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" type="text/css" href="css/menu.css">
+	<link rel="stylesheet" type="text/css" href="css/carrinho.css">
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
-
-	<style>
-        .produtoteste {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 20px;
-            border-radius: 5px;
-        }
-    </style>
-
 </head>
 <body>
 	
@@ -32,14 +23,25 @@
 			</nav>
 		</div>
 	</header>
-	<section class="produtotestes">
-        <header>
-            <h1>Produtos</h1>
-            <div class="container">
-                <div id="carrinhoData"></div>
-                <div id="produtos-container"></div>
-            </div>
-        </header>
+	<section class="sub-menu">
+		<header>
+			<h1>Produtos</h1>
+			<div>
+				<p>aqui estão seus produtos</p>
+			</div>
+		</header>
+	</section>
+
+	<section class="carrinho">
+ 
+		<div class="container">
+			<div id="carrinhoData"></div>
+			<div id="produtos-container"></div>
+		</div>
+
+		<form id="carrinhoForm">
+			<button class="comprar" type="submit">Realizar Compra</button>
+		</form>
     </section>
 	<script>
 		// Recuperar dados do sessionStorage
@@ -49,9 +51,6 @@
 			// Se não houver dados no carrinho, redirecionar para a página de login
 			window.location.href = 'login.html';
 		} else {
-			console.log(carrinhoData)
-			// Exibir uma mensagem de boas-vindas
-			document.getElementById('carrinhoData').innerText = `Bem-vindo, aqui estão seus produtos:`;
 
 			// Obter o contêiner de produtos
 			const container = document.getElementById('produtos-container');
@@ -62,11 +61,11 @@
 			carrinhoData.produtos.forEach(produto => {
 				// Cria um elemento de div para cada produto
 				const produtoDiv = document.createElement('div');
-				produtoDiv.className = 'produtoteste';
+				produtoDiv.className = 'carrinho';
 
 				// Adiciona o conteúdo do produto
 				produtoDiv.innerHTML = `
-					<h2>${produto.nome}</h2>
+					<h3>${produto.nome}</h2>
 					<p>${produto.dados}</p>
 					<p>Preço: R$ ${produto.preco.toFixed(2)}</p>
 					<p>Quantidade: ${produto.quantidade}</p>
@@ -80,16 +79,44 @@
 			console.log(carrinhoData.frete)
 			const containerFrete = document.getElementById('produtos-container');
 			const financeiroDiv = document.createElement('div');
-			financeiroDiv.className = 'produtoteste';
+			financeiroDiv.className = 'carrinho';
 
 			financeiroDiv.innerHTML = `
-				<h3>Valor Compra: R$ ${carrinhoData.valorCompra}</h3>
-				<h3>Valor Frete: R$ ${carrinhoData.frete}</h3>
+				<h3>Valor Compra: R$ ${carrinhoData.valorCompra.toFixed(2)}</h3>
+				<h3>Valor Frete: R$ ${carrinhoData.frete.toFixed(2)}</h3>
 				<h3>Valor Total: R$ ${carrinhoData.valorTotal.toFixed(2)}</h3>
 				`;
 
 			containerFrete.appendChild(financeiroDiv)
 		}
+
+
+		document.getElementById('carrinhoForm').addEventListener('submit', async function(event) {
+                        event.preventDefault();            
+						const valor = carrinhoData.valorTotal.toFixed(2);
+			
+                        try {
+                            const response = await fetch('http://localhost:8080/pagamento', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ valor })
+                            });
+            
+                            if (response.status === 200) {
+                                const data = await response.json();
+    
+                                sessionStorage.setItem('pagamentoData', JSON.stringify(data));
+                                window.location.href = 'pagamento.html';
+                            } else {
+                                alert('Login failed');
+                            }
+                        } catch (error) {
+                            console.error('Error:', error);
+                            alert('An error occurred');
+                        }
+                    });
 	</script>
 
 	<section class="assine">
