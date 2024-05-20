@@ -1,9 +1,8 @@
 /* Sobre */
 
 .carrinho {
-	border: 1px solid #ccc;
 	padding: 10px;
-	margin: 60px;
+	margin: 0px 30px 30px 30px;
 	border-radius: 5px;
 }
 
@@ -12,6 +11,7 @@
 }
 
 .carrinho div .carrinho {
+	border: 1px solid #ccc;
 	align-self: center;
 	padding: 40px 40px;
 	padding-left: 180px;
@@ -21,7 +21,7 @@
 }
 
 .carrinho h3 {
-	padding-right: 30px;
+	padding-right: 50px;
 }
 
 .carrinho p {

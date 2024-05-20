@@ -37,6 +37,8 @@
 }
 
 .assine-info form button {
+	margin-top: 10px;
+	margin-bottom: 10px;
 	flex: 1;
 	padding: 13px;
 	align-self: flex-start;

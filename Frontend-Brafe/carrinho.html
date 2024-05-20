@@ -24,10 +24,7 @@
 <body>
 	<section class="sub-menu">
 		<header>
-			<h1>Produtos</h1>
-			<div>
-				<p>aqui estão seus produtos</p>
-			</div>
+			<h1>Carrinho:</h1>
 		</header>
 	</section>
 
@@ -94,7 +91,13 @@
                         event.preventDefault();            
 						const valor = carrinhoData.valorTotal.toFixed(2);
 			
-                        try {
+						try {
+								const userData = JSON.parse(sessionStorage.getItem('userData'));
+		
+							if (!userData) {
+								// Se não houver dados de usuário, redirecionar para a página de login
+								window.location.href = 'login.html';
+                			}
                             const response = await fetch('http://localhost:8080/pagamento', {
                                 method: 'POST',
                                 headers: {
@@ -134,7 +137,7 @@
 	
 	<footer class="footer">
 		<div class="container">
-			<p>Este é um projeto PIT. Matheus do Prado Marques da Costa. <br>RGM: 23867078. <br>Faculdade: Unifran.</p>
+			<p>Este é um projeto PIT. Matheus do Prado Marques da Costa. <br>RGM: 23867078. <br>Faculdade: Unifran.<br>Endereço: Rua Alguma coisa N: 123 Bairro: NSenhora.<br>Contato: (xx)xxxxx-yyyy.</p>
 			<div class="footer-img">
 				<img src="img/brafe.png" alt="Brafé">
 			</div>
