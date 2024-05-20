@@ -28,8 +28,6 @@
 	</div>
 </header>
 <body>
-
-
     <section class="assine">
         <div class="container">
             <div class="assine-info">
@@ -60,22 +58,20 @@
             
                             if (response.status === 200) {
                                 const data = await response.json();
-                                // Salvar dados no sessionStorage
                                 sessionStorage.setItem('userData', JSON.stringify(data));
                                 window.location.href = 'minha-conta.html';
                             } else {
-                                alert('Login failed');
+                                alert('email ou senha incorreto, tente novamente!');
                             }
                         } catch (error) {
                             console.error('Error:', error);
-                            alert('An error occurred');
+                            alert('Ocorreu um erro no servidor, tente novamente!');
                         }
                     });
                 </script>
             </div>
         </div>
     </section>
-    
     <section class="sobre">
         <h2>Uma Mistura de</h2>
         <div class="container">
@@ -90,8 +86,6 @@
         </div>
         <p>O café é uma bebida produzida a partir dos grãos torrados do fruto do cafeeiro. É servido tradicionalmente quente, mas também pode ser consumido gelado. Ele é um estimulante, por possuir cafeína — geralmente 80 a 140 mg para cada 207 ml dependendo do método de preparação.</p>
     </section>
-    
-
 	<section class="assine">
 		<div class="container">
 			<div class="assine-info">
@@ -105,7 +99,6 @@
 			</form>
 		</div>
 	</section>
-	
 	<footer class="footer">
 		<div class="container">
 			<p>Este é um projeto PIT. Matheus do Prado Marques da Costa. <br>RGM: 23867078. <br>Faculdade: Unifran.<br>Endereço: Rua Alguma coisa N: 123 Bairro: NSenhora.<br>Contato: (xx)xxxxx-yyyy.</p>
@@ -114,6 +107,5 @@
 			</div>
 		</div>
 	</footer>
-	
 </body>
 </html>
