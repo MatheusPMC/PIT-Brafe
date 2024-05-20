@@ -26,157 +26,181 @@
     <section class="sub-menu">
 			<h1>Produtos:</h1>
     </section>           
-
-    <</section>
     <section class="produtos">
-    <form id="carrinhoForm">
-        <ul class="produtos-item">
-            <li class="produtos-item">
-                <input type="hidden" name="produto1_nome" value="Capuccino">
-                <input type="hidden" name="produto1_preco" value="2.45">
-                <input type="hidden" name="produto1_dados" value="Café novo no estilo Cappuccino">
-                <img src="img/cafe-5.jpg" alt="Café 2">
-                <ul>
-                    <li><span>Nome:</span> Capuccino</li>
-                    <li><span>Preço:</span> R$ 2,45</li>
-                    <li><span>Dados:</span> Café novo no estilo Cappuccino</li>
-                </ul>
-                <div class="quantidade">
-                    <label for="produto1_quantidade">Quantidade:</label>
-                    <button type="button" onclick="alterarQuantidade('produto1', -1)">-</button>
-                    <input type="number" id="produto1_quantidade" name="produto1_quantidade" value="0" min="0">
-                    <button type="button" onclick="alterarQuantidade('produto1', 1)">+</button>
-                </div>
-            </li>
-    
-            <li class="produtos-item">
-                <input type="hidden" name="produto2_nome" value="Espresso">
-                <input type="hidden" name="produto2_preco" value="1.99">
-                <input type="hidden" name="produto2_dados" value="Café forte e encorpado">
-                <img src="img/cafe-3.jpg" alt="Café 3">
-                <ul>
-                    <li><span>Nome:</span> Espresso</li>
-                    <li><span>Preço:</span> R$ 1,99</li>
-                    <li><span>Dados:</span> Café forte e encorpado</li>
-                </ul>
-                <div class="quantidade">
-                    <label for="produto2_quantidade">Quantidade:</label>
-                    <button type="button" onclick="alterarQuantidade('produto2', -1)">-</button>
-                    <input type="number" id="produto2_quantidade" name="produto2_quantidade" value="0" min="0">
-                    <button type="button" onclick="alterarQuantidade('produto2', 1)">+</button>
-                </div>
-            </li>
+        <form id="carrinhoForm">
+            <ul class="produtos-item">
+                <li class="produtos-item">
+                    <input type="hidden" name="produto1_nome" value="Capuccino">
+                    <input type="hidden" name="produto1_preco" value="2.45">
+                    <input type="hidden" name="produto1_dados" value="Café novo no estilo Cappuccino">
+                    <img src="img/cafe-5.jpg" alt="Café 2">
+                    <ul>
+                        <li><span>Nome:</span> Capuccino</li>
+                        <li><span>Preço:</span> R$ 2,45</li>
+                        <li><span>Dados:</span> Café novo no estilo Cappuccino</li>
+                    </ul>
+                    <div class="quantidade">
+                        <label for="produto1_quantidade">Quantidade:</label>
+                        <button type="button" onclick="alterarQuantidade('produto1', -1)">-</button>
+                        <input type="number" id="produto1_quantidade" name="produto1_quantidade" value="0" min="0">
+                        <button type="button" onclick="alterarQuantidade('produto1', 1)">+</button>
+                    </div>
+                </li>
+        
+                <li class="produtos-item">
+                    <input type="hidden" name="produto2_nome" value="Espresso">
+                    <input type="hidden" name="produto2_preco" value="1.99">
+                    <input type="hidden" name="produto2_dados" value="Café forte e encorpado">
+                    <img src="img/cafe-3.jpg" alt="Café 3">
+                    <ul>
+                        <li><span>Nome:</span> Espresso</li>
+                        <li><span>Preço:</span> R$ 1,99</li>
+                        <li><span>Dados:</span> Café forte e encorpado</li>
+                    </ul>
+                    <div class="quantidade">
+                        <label for="produto2_quantidade">Quantidade:</label>
+                        <button type="button" onclick="alterarQuantidade('produto2', -1)">-</button>
+                        <input type="number" id="produto2_quantidade" name="produto2_quantidade" value="0" min="0">
+                        <button type="button" onclick="alterarQuantidade('produto2', 1)">+</button>
+                    </div>
+                </li>
 
-            <li class="produtos-item">
-                <input type="hidden" name="produto3_nome" value="Nescafe">
-                <input type="hidden" name="produto3_preco" value="10.99">
-                <input type="hidden" name="produto3_dados" value="Café Nescafe">
-                <img src="img/cafe-4.jpg" alt="Café 3">
-                <ul>
-                    <li><span>Nome:</span> Nescafe</li>
-                    <li><span>Preço:</span> R$ 10,99</li>
-                    <li><span>Dados:</span> Café Nescafe</li>
-                </ul>
-                <div class="quantidade">
-                    <label for="produto3_quantidade">Quantidade:</label>
-                    <button type="button" onclick="alterarQuantidade('produto3', -1)">-</button>
-                    <input type="number" id="produto3_quantidade" name="produto3_quantidade" value="0" min="0">
-                    <button type="button" onclick="alterarQuantidade('produto3', 1)">+</button>
-                </div>
-            </li>
+                <li class="produtos-item">
+                    <input type="hidden" name="produto3_nome" value="Nescafe">
+                    <input type="hidden" name="produto3_preco" value="10.99">
+                    <input type="hidden" name="produto3_dados" value="Café Nescafe">
+                    <img src="img/cafe-4.jpg" alt="Café 3">
+                    <ul>
+                        <li><span>Nome:</span> Nescafe</li>
+                        <li><span>Preço:</span> R$ 10,99</li>
+                        <li><span>Dados:</span> Café Nescafe</li>
+                    </ul>
+                    <div class="quantidade">
+                        <label for="produto3_quantidade">Quantidade:</label>
+                        <button type="button" onclick="alterarQuantidade('produto3', -1)">-</button>
+                        <input type="number" id="produto3_quantidade" name="produto3_quantidade" value="0" min="0">
+                        <button type="button" onclick="alterarQuantidade('produto3', 1)">+</button>
+                    </div>
+                </li>
 
-            <li class="produtos-item">
-                <input type="hidden" name="produto4_nome" value="Espresso">
-                <input type="hidden" name="produto4_preco" value="1.99">
-                <input type="hidden" name="produto4_dados" value="Café forte e encorpado">
-                <img src="img/cafe-3.jpg" alt="Café 3">
-                <ul>
-                    <li><span>Nome:</span> Espresso</li>
-                    <li><span>Preço:</span> R$ 1,99</li>
-                    <li><span>Dados:</span> Café forte e encorpado</li>
-                </ul>
-                <div class="quantidade">
-                    <label for="produto4_quantidade">Quantidade:</label>
-                    <button type="button" onclick="alterarQuantidade('produto4', -1)">-</button>
-                    <input type="number" id="produto4_quantidade" name="produto4_quantidade" value="0" min="0">
-                    <button type="button" onclick="alterarQuantidade('produto4', 1)">+</button>
-                </div>
-            </li>
-        </ul>
+                <li class="produtos-item">
+                    <input type="hidden" name="produto4_nome" value="Espresso">
+                    <input type="hidden" name="produto4_preco" value="1.99">
+                    <input type="hidden" name="produto4_dados" value="Café forte e encorpado">
+                    <img src="img/cafe-3.jpg" alt="Café 3">
+                    <ul>
+                        <li><span>Nome:</span> Espresso</li>
+                        <li><span>Preço:</span> R$ 1,99</li>
+                        <li><span>Dados:</span> Café forte e encorpado</li>
+                    </ul>
+                    <div class="quantidade">
+                        <label for="produto4_quantidade">Quantidade:</label>
+                        <button type="button" onclick="alterarQuantidade('produto4', -1)">-</button>
+                        <input type="number" id="produto4_quantidade" name="produto4_quantidade" value="0" min="0">
+                        <button type="button" onclick="alterarQuantidade('produto4', 1)">+</button>
+                    </div>
+                </li>
+                <li class="produtos-item">
+                    <input type="hidden" name="produto5_nome" value="Espresso">
+                    <input type="hidden" name="produto5_preco" value="1.99">
+                    <input type="hidden" name="produto5_dados" value="Café forte e encorpado">
+                    <img src="img/cafe-3.jpg" alt="Café 3">
+                    <ul>
+                        <li><span>Nome:</span> Espresso</li>
+                        <li><span>Preço:</span> R$ 1,99</li>
+                        <li><span>Dados:</span> Café forte e encorpado</li>
+                    </ul>
+                    <div class="quantidade">
+                        <label for="produto5_quantidade">Quantidade:</label>
+                        <button type="button" onclick="alterarQuantidade('produto5', -1)">-</button>
+                        <input type="number" id="produto5_quantidade" name="produto5_quantidade" value="0" min="0">
+                        <button type="button" onclick="alterarQuantidade('produto5', 1)">+</button>
+                    </div>
+                </li>
+                <li class="produtos-item">
+                    <input type="hidden" name="produto6_nome" value="Espresso">
+                    <input type="hidden" name="produto6_preco" value="1.99">
+                    <input type="hidden" name="produto6_dados" value="Café forte e encorpado">
+                    <img src="img/cafe-3.jpg" alt="Café 3">
+                    <ul>
+                        <li><span>Nome:</span> Espresso</li>
+                        <li><span>Preço:</span> R$ 1,99</li>
+                        <li><span>Dados:</span> Café forte e encorpado</li>
+                    </ul>
+                    <div class="quantidade">
+                        <label for="produto6_quantidade">Quantidade:</label>
+                        <button type="button" onclick="alterarQuantidade('produto6', -1)">-</button>
+                        <input type="number" id="produto6_quantidade" name="produto6_quantidade" value="0" min="0">
+                        <button type="button" onclick="alterarQuantidade('produto6', 1)">+</button>
+                    </div>
+                </li>
+            </ul>
+        
+            <button class="adicionar-produtos" type="submit">Adicionar ao Carrinho</button>
+        </form>
     
-        <button class="adicionar-produtos" type="submit">Adicionar ao Carrinho</button>
-    </form>
-    
-    <script>
-        function alterarQuantidade(produto, delta) {
-            const input = document.getElementById(`${produto}_quantidade`);
-            let quantidade = parseInt(input.value) + delta;
-            if (quantidade < 0) {
-                quantidade = 0;
-            }
-            input.value = quantidade;
-        }
-    
-        document.getElementById('carrinhoForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-    
-            const formData = new FormData(this);
-            const produtos = [];
-    
-            for (const entry of formData.entries()) {
-                const [name, value] = entry;
-                if (name.endsWith('_quantidade') || name.endsWith('_manual')) {
-                    const produto = {};
-                    const prefix = name.substring(0, name.lastIndexOf('_'));
-                    produto.nome = formData.get(`${prefix}_nome`);
-                    produto.preco = formData.get(`${prefix}_preco`);
-                    produto.dados = formData.get(`${prefix}_dados`);
-                    produto.quantidade = value;
-                    produtos.push(produto);
+        <script>
+            function alterarQuantidade(produto, delta) {
+                const input = document.getElementById(`${produto}_quantidade`);
+                let quantidade = parseInt(input.value) + delta;
+                if (quantidade < 0) {
+                    quantidade = 0;
                 }
+                input.value = quantidade;
             }
-    
-            console.log(produtos); // Aqui você pode enviar a lista 'produtos' para o backend
+        
+            document.getElementById('carrinhoForm').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+                const produtos = [];
+        
+                for (const entry of formData.entries()) {
+                    const [name, value] = entry;
+                    if (name.endsWith('_quantidade') || name.endsWith('_manual')) {
+                        const produto = {};
+                        const prefix = name.substring(0, name.lastIndexOf('_'));
+                        produto.nome = formData.get(`${prefix}_nome`);
+                        produto.preco = formData.get(`${prefix}_preco`);
+                        produto.dados = formData.get(`${prefix}_dados`);
+                        produto.quantidade = value;
+                        produtos.push(produto);
+                    }
+                }
 
-                // Envie os dados para o backend
                 try {
                     const userData = JSON.parse(sessionStorage.getItem('userData'));
-				console.log(userData)
-                if (!userData) {
-                    // Se não houver dados de usuário, redirecionar para a página de login
+                    if (!userData) {
+                        window.location.href = 'login.html';
+                    }
+                    const response = await fetch('http://localhost:8080/carrinho', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ produtos })
+                    });
+                    if (response.status === 200) {
+                        const data = await response.json();
+                        sessionStorage.setItem('carrinhoData', JSON.stringify(data));
+                        window.location.href = 'carrinho.html';
+                    } else {
+                        alert('Vocẽ deve efetuar login para continuar!');
+                        window.location.href = 'login.html';
+                    }
+                } catch (error) {
+                    alert('Vocẽ deve efetuar login para continuar!');
                     window.location.href = 'login.html';
                 }
-                        const response = await fetch('http://localhost:8080/carrinho', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ produtos })
-                        });
-                    console.log(response.status === 200)
-                    if (response.status === 200) {
-                            const data = await response.json();
-                            // Salvar dados no sessionStorage
-                            sessionStorage.setItem('carrinhoData', JSON.stringify(data));
-                            window.location.href = 'carrinho.html';
-                        } else {
-                            alert('Ocorreu um problema no servidor!');
-                        }
-                    } catch (error) {
-                        console.error('Error:', error);
-                        alert('Vocẽ deve efetuar login para continuar!');
-                    }
-                });
-    </script>
-</section>
-    
-<footer class="footer">
-    <div class="container">
-        <p>Este é um projeto PIT. Matheus do Prado Marques da Costa. <br>RGM: 23867078. <br>Faculdade: Unifran.<br>Endereço: Rua Alguma coisa N: 123 Bairro: NSenhora.<br>Contato: (xx)xxxxx-yyyy.</p>
-        <div class="footer-img">
-            <img src="img/brafe.png" alt="Brafé">
+            });
+        </script>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <p>Este é um projeto PIT. Matheus do Prado Marques da Costa. <br>RGM: 23867078. <br>Faculdade: Unifran.<br>Endereço: Rua Alguma coisa N: 123 Bairro: NSenhora.<br>Contato: (xx)xxxxx-yyyy.</p>
+            <div class="footer-img">
+                <img src="img/brafe.png" alt="Brafé">
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 </body>
 </html>
