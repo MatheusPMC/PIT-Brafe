@@ -4,81 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - Brafé</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/menu.css">
-    <link rel="stylesheet" href="css/assine.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/cadastrar.css">
+    <link rel="stylesheet" type="text/css" href="css/produtos.css">
+
+
 </head>
-
+<header class="menu">
+	<div class="container">
+		<a class="menu-logo" href="index.html"><img src="img/brafe.png" alt="Brafé"></a>	
+		<nav class="menu-nav">
+			<ul>
+				<li><a href="login.html">Login</a></li>
+				<li><a href="cadastrar.html">Cadastrar</a></li>
+				<li><a href="minha-conta.html">Minha Conta</a></li>
+				<li><a href="produto.html">Produtos</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
 <body>
-    <header class="menu">
-        <div class="container">
-            <a class="menu-logo" href="index.html"><img src="img/brafe.png" alt="Brafé"></a>    
-            <nav class="menu-nav">
-                <ul>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="cadastrar.html">Cadastrar</a></li>
-                    <li><a href="produto.html">Produtos</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <section class="sub-menu">
+			<h1>Cadastrar:</h1>
+    </section>           
 
-    <section class="assine">
+    <section class="sobre">
         <div class="container">
             <div class="assine-info">
-                <h2>Cadastro:</h2>
+
                 <form id="cadastroForm">
+
                     <label for="email">E-Mail:</label>
-                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
+                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required minlength="6">
 
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" placeholder="Digite seu password">
+                    <input type="password" id="password" name="password" placeholder="Digite seu password" required minlength="6">
 
                     <label for="nomeCompleto">Nome Completo:</label>
-                    <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Digite seu nome completo">
+                    <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Digite seu nome completo" required minlength="6">
 
                     <label for="cpf">CPF:</label>
-                    <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF">
+                    <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required minlength="11">
 
-                    <h3>Endereço:</h3>
+                    <h2>Endereço:</h3>
                     <label for="rua">Rua:</label>
-                    <input type="text" id="rua" name="rua" placeholder="Digite o nome da rua">
+                    <input type="text" id="rua" name="rua" placeholder="Digite o nome da rua" required minlength="6">
 
                     <label for="numero">Número:</label>
-                    <input type="text" id="numero" name="numero" placeholder="Digite o número da rua">
+                    <input type="text" id="numero" name="numero" placeholder="Digite o número da rua" required minlength="1">
 
                     <label for="bairro">Bairro:</label>
-                    <input type="text" id="bairro" name="bairro" placeholder="Digite o nome do bairro">
+                    <input type="text" id="bairro" name="bairro" placeholder="Digite o nome do bairro" required minlength="1">
 
                     <label for="cep">CEP:</label>
-                    <input type="text" id="cep" name="cep" placeholder="Digite o CEP">
+                    <input type="text" id="cep" name="cep" placeholder="Digite o CEP" required minlength="5">
 
                     <button type="submit">Cadastrar</button>
                 </form>
 
                 <div id="errorMessage" class="error-message"></div>
             </div>
-        </div>
-    </section>
-
-    <section class="sobre">
-        <h2>Uma Mistura de</h2>
-        <div class="container">
-            <div class="sobre-item">
-                <img src="img/cafe-1.jpg" alt="Café 1">
-                <h3>amor</h3>
-            </div>
-            <div class="sobre-item">
-                <img src="img/cafe-2.jpg" alt="Café 2">
-                <h3>perfeição</h3>
-            </div>
-        </div>
-        <p>O café é uma bebida produzida a partir dos grãos torrados do fruto do cafeeiro. É servido tradicionalmente quente, mas também pode ser consumido gelado. Ele é um estimulante, por possuir cafeína — geralmente 80 a 140 mg para cada 207 ml dependendo do método de preparação.</p>
-    </section>
+        </div></section>
 
     <section class="assine">
         <div class="container">

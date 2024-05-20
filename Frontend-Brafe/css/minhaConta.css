@@ -14,3 +14,47 @@
 	background-color: #f9f9f9;
 }
 
+.minhaConta form {
+	flex: 1;
+	margin: 0 10px;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+}
+
+.minhaConta form label {
+	display: none;
+}
+
+@media (max-width: 739px) {
+	.minhaConta-info {
+		margin: 0 0 20px 0;
+	}
+	.minhaConta form {
+		margin: 0px;
+	}
+}
+
+.minhaConta input {
+	flex: 2;
+	align-self: flex-end;
+	padding: 10px;
+	border: 3px solid #252525;
+	background: none;
+	font-size: 1.5em;
+	font-style: italic;
+	font-family: Georgia, serif;
+}
+
+.minhaConta button {
+	flex: 1;
+	padding: 13px;
+	align-self: flex-start;
+	background: #252525;
+	border: none;
+	font-family: Georgia, serif;
+	text-transform: uppercase;
+	font-size: 1.5em;
+	color: #fff;
+	cursor: pointer;
+}

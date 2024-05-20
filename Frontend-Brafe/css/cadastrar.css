@@ -11,30 +11,42 @@
 .assine-info form {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    display: flex;
+	flex-wrap: wrap;
+    align-content: flex-start;
+    margin: 0 100px;
 }
 
 .assine-info form label {
     margin-top: 10px;
+
 }
 
 .assine-info form input {
     padding: 10px;
     margin-top: 5px;
-    border: 1px solid #252525;
+	border: 3px solid #252525;
     border-radius: 5px;
-    font-size: 1em;
+	font-size: 1.5em;
+    font-style: italic;
+	font-family: Georgia, serif;
+
+	align-self: flex-end;
+    background: none;
 }
 
 .assine-info form button {
-    margin-top: 20px;
-    padding: 10px;
-    border: none;
-    background-color: #252525;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 1.125em;
-    cursor: pointer;
-    border-radius: 5px;
+	flex: 1;
+	padding: 13px;
+	align-self: flex-start;
+	background: #252525;
+	border: none;
+	font-family: Georgia, serif;
+	text-transform: uppercase;
+	font-size: 1.5em;
+	color: #fff;
+	cursor: pointer;
 }
 
 .error-message {
@@ -42,4 +54,13 @@
     margin-top: 10px;
     text-align: center;
     display: none;
+}
+
+@media (max-width: 739px) {
+	.assine-info {
+		margin: 0 0 20px 0;
+	}
+	.assine-info form {
+		margin: 0px;
+	}
 }
