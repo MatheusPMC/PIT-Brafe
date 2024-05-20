@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="css/cadastrar.css">
     <link rel="stylesheet" type="text/css" href="css/produtos.css">
     <link rel="stylesheet" href="css/minhaConta.css">
-
-
 </head>
 <header class="menu">
 	<div class="container">
@@ -33,31 +31,25 @@
         <section class="minhaConta">
             <div id="minhaConta-container"></div>
             <script>
-                // Recuperar dados do sessionStorage
                 const userData = JSON.parse(sessionStorage.getItem('userData'));
-
                 if (!userData) {
-                    // Se não houver dados de usuário, redirecionar para a página de login
                     window.location.href = 'login.html';
                 } else {
-                    // Exibir os dados do usuário
                     const conteinerMinhaConta = document.getElementById('minhaConta-container');
                     const minhaContaDiv = document.createElement('div');
                     minhaContaDiv.className = 'minhaConta';
-
                     minhaContaDiv.innerHTML = `
-                        <h3>E-Mail:</h3> <p>${userData.testando}</p>
-                        <h3>Password:</h3> <p>${userData.testando}</p>
-                        <h3>Nome Completo:</h3> <p>${userData.username}</p>
-                        <h3>CPF:</h3> <p>${userData.username}</p>
+                        <h3>E-Mail:</h3> <p>${userData.email}</p>
+                        <h3>Password:</h3> <p>${userData.password}</p>
+                        <h3>Nome Completo:</h3> <p>${userData.nomeCompleto}</p>
+                        <h3>CPF:</h3> <p>${userData.cpf}</p>
                         <br>
                         <h3>Endereço: </h3>
-                        <h3>Rua:</h3> <p>${userData.username}</p>
-                        <h3>Número da Rua:</h3> <p>${userData.username}</p>
-                        <h3>Bairro:</h3> <p>${userData.username}</p>
-                        <h3>Cep:</h3> <p>${userData.username}</p>
+                        <h3>Rua:</h3> <p>${userData.rua}</p>
+                        <h3>Número da Rua:</h3> <p>${userData.numero}</p>
+                        <h3>Bairro:</h3> <p>${userData.bairro}</p>
+                        <h3>Cep:</h3> <p>${userData.cep}</p>
                     `;
-
                     conteinerMinhaConta.appendChild(minhaContaDiv);
                 }
             </script>
@@ -65,9 +57,7 @@
         <section class="sobre">
             <div class="container">
                 <div class="assine-info">
-    
                     <form id="cadastroForm">
-    
                         <label for="email">E-Mail:</label>
                         <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
     
@@ -81,6 +71,7 @@
                         <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF">
     
                         <h2>Endereço:</h2>
+
                         <label for="rua">Rua:</label>
                         <input type="text" id="rua" name="rua" placeholder="Digite o nome da rua">
     
@@ -95,16 +86,14 @@
     
                         <button type="submit">Atualizar</button>
                     </form>
-    
-                    <div id="errorMessage" class="error-message"></div>
-
-
+                <div id="errorMessage" class="error-message"></div>
             <div id="errorMessage" style="color: red; display: none;"></div>
 
             <script>
                 document.getElementById('cadastroForm').addEventListener('submit', async function(event) {
                     event.preventDefault();
 
+                    const id = userData.id;
                     const email = document.getElementById('email').value;
                     const password = document.getElementById('password').value;
                     const nomeCompleto = document.getElementById('nomeCompleto').value;
@@ -115,30 +104,27 @@
                     const cep = document.getElementById('cep').value;
 
                     try {
-                        const response = await fetch('http://localhost:8080/cadastro', {
-                            method: 'POST',
+                        const response = await fetch('http://localhost:8080/usuario/atualizar', {
+                            method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({ email, password, nomeCompleto, cpf, rua, numero, bairro, cep })
+                            body: JSON.stringify({ id, email, password, nomeCompleto, cpf, rua, numero, bairro, cep })
                         });
 
-                        if (response.status === 201) {
+                        if (response.status === 200) {
                             const data = await response.json();
-                            // Salvar dados no sessionStorage
                             sessionStorage.setItem('userData', JSON.stringify(data));
                             window.location.href = 'minha-conta.html';
                         } else {
-                            alert('Cadastro failed');
+                            alert('Falha ao atualizar, tente novamente!');
                         }
                     } catch (error) {
-                        console.error('Error:', error);
-                        alert('An error occurred');
+                        alert('Falha ao atualizar, tente novamente!');
                     }
                 });
             </script>
-                </div>
-            </div></section>
+        </section>
     </div>
     <section class="assine">
         <div class="container">
@@ -161,43 +147,5 @@
 			</div>
 		</div>
 	</footer>
-
-    <script>
-        document.getElementById('cadastroForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const nomeCompleto = document.getElementById('nomeCompleto').value;
-            const cpf = document.getElementById('cpf').value;
-            const rua = document.getElementById('rua').value;
-            const numero = document.getElementById('numero').value;
-            const bairro = document.getElementById('bairro').value;
-            const cep = document.getElementById('cep').value;
-
-            try {
-                const response = await fetch('http://localhost:8080/cadastro', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password, nomeCompleto, cpf, rua, numero, bairro, cep })
-                });
-
-                if (response.status === 201) {
-                    const data = await response.json();
-                    sessionStorage.setItem('userData', JSON.stringify(data));
-                    window.location.href = 'login.html';
-                } else {
-                    const errorData = await response.json();
-                    document.getElementById('errorMessage').textContent = errorData.message;
-                    document.getElementById('errorMessage').style.display = 'block';
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred');
-            }
-        });
-    </script>
 </body>
 </html>
