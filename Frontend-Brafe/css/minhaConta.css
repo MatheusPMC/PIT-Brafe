@@ -3,15 +3,21 @@
 .container {
 	display: flex;
 	justify-content: space-between;
-	gap: 20px;
+	gap: 40px;
 }
+
+.minhaConta p {
+	padding-bottom: 10px;
+
+}
+
 .minhaConta {
 	flex: 1;
 	padding: 20px;
 	box-sizing: border-box;
-	border: 1px solid #ccc;
-	border-radius: 10px;
-	background-color: #f9f9f9;
+}
+.minhaConta-container {
+	margin-right: 40px;
 }
 
 .minhaConta form {
