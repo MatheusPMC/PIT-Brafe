@@ -1,45 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Brafé</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <head>
-        <title>Brafé</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" type="text/css" href="css/menu.css">
-        <link rel="stylesheet" type="text/css" href="css/sobre.css">
-        <link rel="stylesheet" type="text/css" href="css/footer.css">
-        <link rel="stylesheet" type="text/css" href="css/cadastrar.css">
-        <link rel="stylesheet" type="text/css" href="css/produtos.css">
-    </head>
-    <header class="menu">
-        <div class="container">
-            <a class="menu-logo" href="index.html"><img src="img/brafe.png" alt="Brafé"></a>	
-            <nav class="menu-nav">
-                <ul>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="cadastrar.html">Cadastrar</a></li>
-                    <li><a href="minha-conta.html">Minha Conta</a></li>
-                    <li><a href="produto.html">Produtos</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <title>Pagamento - Brafé</title>
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/sobre.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="css/cadastrar.css">
+    <link rel="stylesheet" type="text/css" href="css/produtos.css">
 </head>
-
+<header class="menu">
+    <div class="container">
+        <a class="menu-logo" href="index.html"><img src="img/brafe.png" alt="Brafé"></a>	
+        <nav class="menu-nav">
+            <ul>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="cadastrar.html">Cadastrar</a></li>
+                <li><a href="minha-conta.html">Minha Conta</a></li>
+                <li><a href="produto.html">Produtos</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 <body>
     <section class="sub-menu">
         <h1>Pagamento:</h1>
-</section>      
-
+    </section>      
     <section class="sobre">
         <div class="container">
             <div class="assine-info">
-
                 <form id="cadastroForm">
-
                     <label for="numeroCartao">Número do Cartão:</label>
                     <input type="text" id="numeroCartao" name="numeroCartao" required minlength="16" placeholder="xxxxxxxxxxxxxxxx">
 
@@ -60,9 +51,8 @@
                 </form>
                 <div id="errorMessage" class="error-message"></div>
             </div>
-        </div></section>
-
-
+        </div>
+    </section>
 	<section class="assine">
 		<div class="container">
 			<div class="assine-info">
@@ -76,7 +66,6 @@
 			</form>
 		</div>
 	</section>
-	
 	<footer class="footer">
 		<div class="container">
 			<p>Este é um projeto PIT. Matheus do Prado Marques da Costa. <br>RGM: 23867078. <br>Faculdade: Unifran.<br>Endereço: Rua Alguma coisa N: 123 Bairro: NSenhora.<br>Contato: (xx)xxxxx-yyyy.</p>
@@ -85,41 +74,39 @@
 			</div>
 		</div>
 	</footer>
-
     <script>
         document.getElementById('cadastroForm').addEventListener('submit', async function(event) {
             event.preventDefault();
-
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const nomeCompleto = document.getElementById('nomeCompleto').value;
-            const cpf = document.getElementById('cpf').value;
-            const rua = document.getElementById('rua').value;
-            const numero = document.getElementById('numero').value;
-            const bairro = document.getElementById('bairro').value;
-            const cep = document.getElementById('cep').value;
-
-            try {
-                const response = await fetch('http://localhost:8080/pagamento', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password, nomeCompleto, cpf, rua, numero, bairro, cep })
-                });
-
-                if (response.status === 201) {
-                    const data = await response.json();
-                    sessionStorage.setItem('userData', JSON.stringify(data));
-                    window.location.href = 'login.html';
-                } else {
-                    const errorData = await response.json();
-                    document.getElementById('errorMessage').textContent = errorData.message;
-                    document.getElementById('errorMessage').style.display = 'block';
+            const userData = JSON.parse(sessionStorage.getItem('userData'));
+            if (!userData) {
+                window.location.href = 'login.html';
+            } else {
+                const id = userData.id;
+                const numeroCartao = document.getElementById('numeroCartao').value;
+                const dataExpiracao = document.getElementById('dataExpiracao').value;
+                const cvv = document.getElementById('cvv').value;
+                const nomeCompleto = document.getElementById('nomeCompleto').value;
+                const cpf = document.getElementById('cpf').value;
+                try {
+                    const response = await fetch('http://localhost:8080/pagamento', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id, numeroCartao, dataExpiracao, cvv, nomeCompleto, cpf })
+                    });
+                    if (response.status === 200) {
+                        alert('Pagamento Realizado com sucesso, muito obrigado volte sempre!');
+                        window.location.href = 'index.html';
+                    } else {
+                        const errorData = await response.json();
+                        document.getElementById('errorMessage').textContent = errorData.message;
+                        document.getElementById('errorMessage').style.display = 'block';
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Ocorreu um erro ao efetuar pagamento, tente novamente!');
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred');
             }
         });
     </script>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Brafé</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Carrinho - Brafé</title>
 	<link rel="stylesheet" type="text/css" href="css/menu.css">
 	<link rel="stylesheet" type="text/css" href="css/carrinho.css">
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
@@ -40,37 +40,24 @@
 		</form>
     </section>
 	<script>
-		// Recuperar dados do sessionStorage
 		const carrinhoData = JSON.parse(sessionStorage.getItem('carrinhoData'));
 
 		if (!carrinhoData) {
-			// Se não houver dados no carrinho, redirecionar para a página de login
 			window.location.href = 'login.html';
 		} else {
-
-			// Obter o contêiner de produtos
 			const container = document.getElementById('produtos-container');
-
-	
-
-			// Iterar sobre os produtos e adicioná-los ao contêiner
 			carrinhoData.produtos.forEach(produto => {
-				// Cria um elemento de div para cada produto
 				const produtoDiv = document.createElement('div');
 				produtoDiv.className = 'carrinho';
 
-				// Adiciona o conteúdo do produto
 				produtoDiv.innerHTML = `
 					<h3>${produto.nome}</h2>
 					<p>${produto.dados}</p>
 					<p>Preço: R$ ${produto.preco.toFixed(2)}</p>
 					<p>Quantidade: ${produto.quantidade}</p>
 				`;
-
-				// Adiciona o div do produto ao contêiner
 				container.appendChild(produtoDiv);
 			});
-
 
 			console.log(carrinhoData.frete)
 			const containerFrete = document.getElementById('produtos-container');
