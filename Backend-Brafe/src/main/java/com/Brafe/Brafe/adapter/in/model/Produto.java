@@ -9,10 +9,20 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class Produto {
+    private Long id;
     private String nome;
     private Double preco;
     private String dados;
     private Integer quantidade;
+    private String imagem;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -44,5 +54,13 @@ public class Produto {
 
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 }
