@@ -98,30 +98,39 @@
                 }
             }
 
-            try {
-                const userData = JSON.parse(sessionStorage.getItem('userData'));
-                if (!userData) {
-                    window.location.href = 'login.html';
-                }
-                const response = await fetch('http://localhost:8080/carrinho', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ produtos })
-                });
-                if (response.status === 200) {
-                    const data = await response.json();
-                    sessionStorage.setItem('carrinhoData', JSON.stringify(data));
-                    window.location.href = 'carrinho.html';
-                } else {
+            let quantidadeTotal = 0;
+            produtos.forEach(produto => {
+                quantidadeTotal = quantidadeTotal + produto.quantidade
+            })
+
+            if (quantidadeTotal > 0) {
+                try {
+                    const userData = JSON.parse(sessionStorage.getItem('userData'));
+                    if (!userData) {
+                        window.location.href = 'login.html';
+                    }
+                    const response = await fetch('http://localhost:8080/carrinho', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ produtos })
+                    });
+                    if (response.status === 200) {
+                        const data = await response.json();
+                        sessionStorage.setItem('carrinhoData', JSON.stringify(data));
+                        window.location.href = 'carrinho.html';
+                    } else {
+                        alert('Vocẽ deve efetuar login para continuar!');
+                        window.location.href = 'login.html';
+                    }
+                } catch (error) {
                     alert('Vocẽ deve efetuar login para continuar!');
                     window.location.href = 'login.html';
                 }
-            } catch (error) {
-                alert('Vocẽ deve efetuar login para continuar!');
-                window.location.href = 'login.html';
-            }
+            } else {
+                alert('Vocẽ deve adicionar um ou mais produtos para continuar!');
+            } 
         });
     </script>
     <footer class="footer">
