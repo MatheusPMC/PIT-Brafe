@@ -10,7 +10,6 @@ import com.Brafe.Brafe.port.in.UsuarioCorePort;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,34 +27,34 @@ public class UsuarioController {
 
 
     @PostMapping("/login")
-    @CrossOrigin(origins = "http://localhost:8080")
     public ResponseEntity<Usuario> login(@RequestBody Login loginRequest) {
         String nomeMetodo = Thread.currentThread().getStackTrace()[1].getMethodName();
         log.info("Entrou no {}: {}", nomeMetodo, loginRequest.getEmail());
         Usuario usuario = usuarioCore.login(loginRequest);
 
         if (usuario != null) {
-            log.info("Entrou no {}: {}", nomeMetodo, HttpStatus.OK);
+            log.info("Saindo do {}: {}", nomeMetodo, HttpStatus.OK);
             return ResponseEntity.status(HttpStatus.OK).body(usuario);
         } else {
-            log.info("Entrou no {}: {}", nomeMetodo, HttpStatus.UNAUTHORIZED);
+            log.info("Saindo do {}: {}", nomeMetodo, HttpStatus.UNAUTHORIZED);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
 
     @PostMapping("/cadastro")
-    @CrossOrigin(origins = "http://localhost:8080")
     public ResponseEntity<Usuario> cadastro(@RequestBody Usuario cadastroRequest) {
-        System.out.println(cadastroRequest);
-        if (usuario == null)
-            usuario = new Usuario();
-        if (usuario.getId() != null)
-            cadastroRequest.setId(usuario.getId() + 1L);
-        else
-            cadastroRequest.setId(1L);
+        String nomeMetodo = Thread.currentThread().getStackTrace()[1].getMethodName();
+        log.info("Entrou no {}: {}", nomeMetodo, cadastroRequest);
+        Usuario usuario = usuarioCore.cadastrar(cadastroRequest);
 
-        usuario = cadastroRequest;
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
+        if (usuario != null) {
+            log.info("Saindo do {}: {}", nomeMetodo, HttpStatus.CREATED);
+            return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
+
+        } else {
+            log.info("Saindo do {}: {}", nomeMetodo, HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
 

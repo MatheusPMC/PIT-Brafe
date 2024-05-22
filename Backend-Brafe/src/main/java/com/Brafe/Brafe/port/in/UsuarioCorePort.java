@@ -5,4 +5,6 @@ import com.Brafe.Brafe.adapter.in.model.Usuario;
 
 public interface UsuarioCorePort {
     Usuario login(Login login);
+
+    Usuario cadastrar(Usuario usuario);
 }

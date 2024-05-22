@@ -21,4 +21,10 @@ public class UsuarioCore implements UsuarioCorePort {
         UsuarioEntity usuarioEntity = usuarioRepository.findByEmailAndPassword(login.getEmail(), login.getPassword());
         return usuarioMapper.map(usuarioEntity);
     }
+
+    @Override
+    public Usuario cadastrar(Usuario usuario) {
+        UsuarioEntity usuarioEntity = usuarioRepository.save(usuarioMapper.mapToEntity(usuario));
+        return usuarioMapper.map(usuarioEntity);
+    }
 }
