@@ -6,21 +6,23 @@ import com.Brafe.Brafe.adapter.out.repository.EnderecoRepository;
 import com.Brafe.Brafe.adapter.out.repository.UsuarioRepository;
 import com.Brafe.Brafe.domain.entity.EnderecoEntity;
 import com.Brafe.Brafe.domain.entity.UsuarioEntity;
+import com.Brafe.Brafe.port.in.UsuarioCorePort;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("usuario")
+@RequiredArgsConstructor
+@Slf4j
 public class UsuarioController {
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private EnderecoRepository enderecoRepository;
+    private final UsuarioCorePort usuarioCore;
+    private final UsuarioRepository usuarioRepository;
+    private final EnderecoRepository enderecoRepository;
 
     private Usuario usuario;
 
@@ -28,11 +30,17 @@ public class UsuarioController {
     @PostMapping("/login")
     @CrossOrigin(origins = "http://localhost:8080")
     public ResponseEntity<Usuario> login(@RequestBody Login loginRequest) {
-        System.out.println(loginRequest);
-        if (usuario != null && loginRequest.getEmail().equalsIgnoreCase(usuario.getEmail()) && loginRequest.getPassword().equals(usuario.getPassword())) {
+        String nomeMetodo = Thread.currentThread().getStackTrace()[1].getMethodName();
+        log.info("Entrou no {}: {}", nomeMetodo, loginRequest.getEmail());
+        Usuario usuario = usuarioCore.login(loginRequest);
+
+        if (usuario != null) {
+            log.info("Entrou no {}: {}", nomeMetodo, HttpStatus.OK);
             return ResponseEntity.status(HttpStatus.OK).body(usuario);
-        } else
+        } else {
+            log.info("Entrou no {}: {}", nomeMetodo, HttpStatus.UNAUTHORIZED);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
     }
 
     @PostMapping("/cadastro")
