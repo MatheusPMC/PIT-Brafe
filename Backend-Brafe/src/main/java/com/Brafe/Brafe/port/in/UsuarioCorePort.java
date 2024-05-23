@@ -7,4 +7,6 @@ public interface UsuarioCorePort {
     Usuario login(Login login);
 
     Usuario cadastrar(Usuario usuario);
+
+    Usuario atualizar(Usuario usuario);
 }

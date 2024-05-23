@@ -57,6 +57,22 @@ public class UsuarioController {
         }
     }
 
+    @PutMapping("/atualizar")
+    @CrossOrigin(origins = "http://localhost:8080")
+    public ResponseEntity<Usuario> atualizar(@RequestBody Usuario cadastroRequest) {
+        String nomeMetodo = Thread.currentThread().getStackTrace()[1].getMethodName();
+        log.info("Entrou no {}: {}", nomeMetodo, cadastroRequest);
+        Usuario usuario = usuarioCore.atualizar(cadastroRequest);
+
+        if (usuario != null) {
+            log.info("Saindo do {}: {}", nomeMetodo, HttpStatus.OK);
+            return ResponseEntity.status(HttpStatus.OK).body(usuario);
+
+        } else {
+            log.info("Saindo do {}: {}", nomeMetodo, HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 
     @Transactional
     @GetMapping("/test")
@@ -84,11 +100,5 @@ public class UsuarioController {
 
     }
 
-    @PutMapping("/atualizar")
-    @CrossOrigin(origins = "http://localhost:8080")
-    public ResponseEntity<Usuario> atualizar(@RequestBody Usuario cadastroRequest) {
-        System.out.println(cadastroRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).body(cadastroRequest);
-    }
 }
