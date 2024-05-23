@@ -1,5 +1,17 @@
 /* Sobre */
 
+.minhaConta .apagar button {
+	flex: 1;
+	align-self: flex-end;
+	background: #ffffff;
+
+	font-family: Georgia, serif;
+	text-transform: uppercase;
+
+	color: #000000;
+	cursor: pointer;
+
+}
 .container {
 	display: flex;
 	justify-content: space-between;
@@ -10,6 +22,8 @@
 	padding-bottom: 10px;
 
 }
+
+
 
 .minhaConta {
 	flex: 1;
