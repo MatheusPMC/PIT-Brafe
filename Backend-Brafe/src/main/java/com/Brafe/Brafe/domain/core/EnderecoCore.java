@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -46,5 +47,12 @@ public class EnderecoCore implements EnderecoCorePort {
     public boolean excluirEndereco(Long idEndereco) {
         enderecoRepository.deleteById(idEndereco);
         return enderecoRepository.findById(idEndereco).isEmpty();
+    }
+
+    @Override
+    public Endereco buscarEndereco(Long idEndereco) {
+        Optional<EnderecoEntity> enderecoEntityOptional = enderecoRepository.findById(idEndereco);
+        EnderecoEntity enderecoEntity = enderecoEntityOptional.orElse(null);
+        return  enderecoMapper.map(enderecoEntity);
     }
 }

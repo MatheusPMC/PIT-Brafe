@@ -33,6 +33,23 @@ public class EnderecoController {
         }
     }
 
+    @GetMapping("/{idEndereco}")
+    public ResponseEntity<Endereco> buscarEndereco(@PathVariable Long idEndereco) {
+        String nomeMetodo = Thread.currentThread().getStackTrace()[1].getMethodName();
+        log.info("Entrou no {}: {}", nomeMetodo, idEndereco);
+
+        Endereco endereco = enderecoCore.buscarEndereco(idEndereco);
+
+        if (endereco != null) {
+            log.info("Saindo do {}:, quantidade: {}, {}", nomeMetodo, endereco, HttpStatus.OK);
+            return ResponseEntity.status(HttpStatus.OK).body(endereco);
+        } else {
+            log.info("Saindo do {}:, quantidade: {}, {}", nomeMetodo, endereco, HttpStatus.BAD_REQUEST);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+
     @GetMapping("/usuario/{idUsuario}")
     public ResponseEntity<List<Endereco>> buscarEnderecosDoUsuario(@PathVariable Long idUsuario) {
         String nomeMetodo = Thread.currentThread().getStackTrace()[1].getMethodName();

@@ -11,4 +11,6 @@ public interface EnderecoCorePort {
     Endereco cadastrar(Endereco endereco);
     List<Endereco> buscarEnderecosPorUsuario(Long idUsuario);
     boolean excluirEndereco(Long idUsuario);
+
+    Endereco buscarEndereco(Long idEndereco);
 }

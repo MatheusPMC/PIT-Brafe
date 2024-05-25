@@ -78,6 +78,7 @@
         document.getElementById('cadastroForm').addEventListener('submit', async function(event) {
             event.preventDefault();
             const userData = JSON.parse(sessionStorage.getItem('userData'));
+            const entregaData = JSON.parse(sessionStorage.getItem('entregaData'));
             if (!userData) {
                 window.location.href = 'login.html';
             } else {
@@ -93,7 +94,7 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ id, numeroCartao, dataExpiracao, cvv, nomeCompleto, cpf })
+                        body: JSON.stringify({ id, numeroCartao, dataExpiracao, cvv, nomeCompleto, cpf, entregaData })
                     });
                     if (response.status === 200) {
                         alert('Pagamento Realizado com sucesso, muito obrigado volte sempre!');

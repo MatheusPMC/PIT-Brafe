@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta - Brafé</title>
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/cadastrar.css">
+    <link rel="stylesheet" type="text/css" href="css/produtos.css">
+    <link rel="stylesheet" href="css/minhaConta.css">
+</head>
+<header class="menu">
+	<div class="container">
+		<a class="menu-logo" href="index.html"><img src="img/brafe.png" alt="Brafé"></a>	
+		<nav class="menu-nav">
+			<ul>
+				<li><a href="login.html">Login</a></li>
+				<li><a href="cadastrar.html">Cadastrar</a></li>
+				<li><a href="minha-conta.html">Minha Conta</a></li>
+				<li><a href="produto.html">Produtos</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+<body>
+    <section class="sub-menu">
+        <h1>Minha Conta:</h1>
+    </section>           
+	<div class="container">
+        <section class="minhaConta">
+            <ul class="enderecos-item"></ul>
+              <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const idUsuario = userData.id;
+            fetch('http://localhost:8080/endereco/usuario/'+idUsuario)
+                .then(response => response.json())
+                .then(data => {
+
+                    console.log(data)
+                    const enderecosContainer = document.querySelector('.enderecos-item');
+                    enderecosContainer.innerHTML = '';
+    
+                    if (data && Array.isArray(data)) {
+                        data.forEach((endereco, index) => {
+                            console.log(index)
+                            const enderecoHTML = `
+                            <li class="enderecos-item">
+                                    <ul>
+                                        <li><span>Endereço:</span> ${endereco.rua}</li>
+                                        <li><span>Rua:</span> ${endereco.rua}</li>
+                                        <li><span>Numero:</span> ${endereco.numero}</li>
+                                        <li><span>Rua:</span> ${endereco.bairro}</li>
+                                        <li><span>Numero:</span> ${endereco.numero}</li>
+                                        <li><span>Rua:</span> ${endereco.complemento}</li>
+                                        <li><span>Rua:</span> ${endereco.cep}</li>
+                                    </ul>
+                                
+                                    <div class="apagar">
+                                        <span class="tooltiptext">Clique aqui para escolher o endereço ➥</span>
+
+                                        <button class="escolherEndereco" title="escolher" type="button" onclick="escolherEndereco(${endereco.id})">✔</button>
+                                    </div>
+                                </li>
+                            `;
+                            enderecosContainer.insertAdjacentHTML('beforeend', enderecoHTML);
+                        });
+                    } else {
+                        console.error('Dados no formato inesperado:', data);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao obter produtos:', error);
+                });
+        });
+
+                const userData = JSON.parse(sessionStorage.getItem('userData'));
+                if (!userData) {
+                    window.location.href = 'login.html';
+                } else {
+
+                }
+
+
+                function escolherEndereco(enderecoId) {
+
+                    console.log(enderecoId)
+            
+                    fetch('http://localhost:8080/endereco/' + enderecoId, {
+                        method: 'GET',
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Ocorreu um erro ao buscar o endereço.');
+                            }
+                                return response.json();
+                            })
+                            .then(data => {                     
+                            sessionStorage.setItem('entregaData', JSON.stringify(data));
+                            window.location.href = 'pagamento.html';
+                            })
+                        .catch(error => {
+                        console.error('Erro:', error);
+                    });
+                    
+        }
+            </script>
+        </section>
+        <section class="sobre">
+            <div class="container">
+                <div class="assine-info">
+                    <form id="cadastroForm">
+                        <h2>Endereço:</h2>
+
+                        <label for="rua">Rua:</label>
+                        <input type="text" id="rua" name="rua" placeholder="Digite o nome da rua" required minlength="6">
+    
+                        <label for="numero">Número:</label>
+                        <input type="text" id="numero" name="numero" placeholder="Digite o número da rua" required minlength="1">
+    
+                        <label for="bairro">Bairro:</label>
+                        <input type="text" id="bairro" name="bairro" placeholder="Digite o nome do bairro" required minlength="1">
+    
+                        <label for="complemento">Complemento:</label>
+                        <input type="text" id="complemento" name="complemento" placeholder="Digite o nome do complemento" required minlength="1">
+
+                        <label for="cep">CEP:</label>
+                        <input type="text" id="cep" name="cep" placeholder="Digite o CEP" required minlength="5">
+    
+                        <button type="submit">Cadastrar</button>
+                    </form>
+                <div id="errorMessage" class="error-message"></div>
+            <div id="errorMessage" style="color: red; display: none;"></div>
+            <script>
+                document.getElementById('cadastroForm').addEventListener('submit', async function(event) {
+                    event.preventDefault();
+
+                    const idUsuario = userData.id;
+                    const rua = document.getElementById('rua').value;
+                    const numero = document.getElementById('numero').value;
+                    const bairro = document.getElementById('bairro').value;
+                    const complemento = document.getElementById('complemento').value;
+                    const cep = document.getElementById('cep').value;
+
+                    try {
+                        const response = await fetch('http://localhost:8080/endereco/cadastro', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ idUsuario, rua, numero, bairro, complemento, cep })
+                        });
+
+                        if (response.status === 201) {
+                            const data = await response.json();
+
+                            window.location.href = 'endereco.html';
+                        } else {
+                            alert('Falha ao atualizar, tente novamente!');
+                        }
+                    } catch (error) {
+                        alert('Falha ao atualizar, tente novamente!');
+                    }
+                });
+            </script>
+        </section>
+    </div>
+    <section class="assine">
+        <div class="container">
+            <div class="assine-info">
+                <h2>Assine Nossa Newsletter</h2>
+                <p>promoções e eventos mensais</p>
+            </div>
+            <form>
+                <label for="newsletter-email">E-mail</label>
+                <input type="email" id="newsletter-email" placeholder="Digite seu e-mail">
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </section>
+	<footer class="footer">
+		<div class="container">
+			<p>Este é um projeto PIT. Matheus do Prado Marques da Costa. <br>RGM: 23867078. <br>Faculdade: Unifran.<br>Endereço: Rua Alguma coisa N: 123 Bairro: NSenhora.<br>Contato: (xx)xxxxx-yyyy.</p>
+			<div class="footer-img">
+				<img src="img/brafe.png" alt="Brafé">
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
