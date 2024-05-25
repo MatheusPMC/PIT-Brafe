@@ -1,45 +1,33 @@
 package com.Brafe.Brafe.adapter.in.controller;
 
 import com.Brafe.Brafe.adapter.in.model.Produto;
-import com.Brafe.Brafe.adapter.in.model.Produtos;
+import com.Brafe.Brafe.port.in.ProdutoCorePort;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("produtos")
+@RequiredArgsConstructor
+@Slf4j
 public class ProdutoController {
+    private final ProdutoCorePort produtoCore;
 
     @GetMapping
     @CrossOrigin(origins = "http://localhost:8080")
-    public ResponseEntity<Produtos> carrinho() {
-        System.out.println("entrou aq");
-    Produtos produtos = new Produtos();
-    List<Produto> list = new ArrayList<>();
-    Produto produto = new Produto();
-        produto.setId(1L);
-        produto.setDados("test");
-        produto.setNome("test");
-        produto.setPreco(5.0);
-        produto.setQuantidade(5);
-        produto.setImagem("img/cafe-5.jpg");
-    list.add(produto);
+    public ResponseEntity<List<Produto>> buscarProdutos() {
+        String nomeMetodo = Thread.currentThread().getStackTrace()[1].getMethodName();
+        log.info("Entrou no {}", nomeMetodo);
+        List<Produto> list = produtoCore.buscarProdutos();
 
-        Produto produto2 = new Produto();
-        produto2.setId(2L);
-        produto2.setDados("test2");
-        produto2.setNome("test2");
-        produto2.setPreco(10.0);
-        produto2.setQuantidade(10);
-        produto2.setImagem("img/cafe-6.jpg");
-        list.add(produto2);
-    produtos.setProdutos(list);
-
-
-        System.out.println(produtos);
-    return ResponseEntity.status(HttpStatus.OK).body(produtos);
+        log.info("Saindo do {}: {}", nomeMetodo, HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(list);
     }
 }

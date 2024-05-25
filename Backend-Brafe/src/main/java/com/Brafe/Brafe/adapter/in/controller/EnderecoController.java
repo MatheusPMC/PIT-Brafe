@@ -1,14 +1,7 @@
 package com.Brafe.Brafe.adapter.in.controller;
 
 import com.Brafe.Brafe.adapter.in.model.Endereco;
-import com.Brafe.Brafe.adapter.in.model.Usuario;
-import com.Brafe.Brafe.adapter.out.repository.EnderecoRepository;
-import com.Brafe.Brafe.adapter.out.repository.UsuarioRepository;
-import com.Brafe.Brafe.domain.entity.EnderecoEntity;
-import com.Brafe.Brafe.domain.entity.UsuarioEntity;
-import com.Brafe.Brafe.domain.mapper.EnderecoMapper;
 import com.Brafe.Brafe.port.in.EnderecoCorePort;
-import com.Brafe.Brafe.port.in.UsuarioCorePort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -59,7 +52,7 @@ public class EnderecoController {
         if (enderecoCore.excluirEndereco(idEndereco)) {
             log.info("Saindo do {}: {}", nomeMetodo, HttpStatus.OK);
             return ResponseEntity.status(HttpStatus.OK).body(true);
-         } else {
+        } else {
             log.info("Saindo do {}: {}", nomeMetodo, HttpStatus.INTERNAL_SERVER_ERROR);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
         }

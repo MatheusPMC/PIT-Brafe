@@ -52,7 +52,7 @@
 
 				produtoDiv.innerHTML = `
 					<h3>${produto.nome}</h2>
-					<p>${produto.dados}</p>
+					<p>${produto.descricao}</p>
 					<p>Preço: R$ ${produto.preco.toFixed(2)}</p>
 					<p>Quantidade: ${produto.quantidade}</p>
 				`;
@@ -82,7 +82,6 @@
 								const userData = JSON.parse(sessionStorage.getItem('userData'));
 		
 							if (!userData) {
-								// Se não houver dados de usuário, redirecionar para a página de login
 								window.location.href = 'login.html';
                 			}
                             const response = await fetch('http://localhost:8080/pagamento', {

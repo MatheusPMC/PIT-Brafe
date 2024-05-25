@@ -3,8 +3,10 @@ package com.Brafe.Brafe.adapter.in.controller;
 import com.Brafe.Brafe.adapter.in.model.Login;
 import com.Brafe.Brafe.adapter.in.model.Usuario;
 import com.Brafe.Brafe.adapter.out.repository.EnderecoRepository;
+import com.Brafe.Brafe.adapter.out.repository.ProdutoRepository;
 import com.Brafe.Brafe.adapter.out.repository.UsuarioRepository;
 import com.Brafe.Brafe.domain.entity.EnderecoEntity;
+import com.Brafe.Brafe.domain.entity.ProdutoEntity;
 import com.Brafe.Brafe.domain.entity.UsuarioEntity;
 import com.Brafe.Brafe.port.in.UsuarioCorePort;
 import jakarta.transaction.Transactional;
@@ -14,6 +16,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("usuario")
 @RequiredArgsConstructor
@@ -22,6 +27,7 @@ public class UsuarioController {
     private final UsuarioCorePort usuarioCore;
     private final UsuarioRepository usuarioRepository;
     private final EnderecoRepository enderecoRepository;
+    private final ProdutoRepository produtoRepository;
 
     private Usuario usuario;
 
@@ -58,7 +64,6 @@ public class UsuarioController {
     }
 
     @PutMapping("/atualizar")
-    @CrossOrigin(origins = "http://localhost:8080")
     public ResponseEntity<Usuario> atualizar(@RequestBody Usuario cadastroRequest) {
         String nomeMetodo = Thread.currentThread().getStackTrace()[1].getMethodName();
         log.info("Entrou no {}: {}", nomeMetodo, cadastroRequest);
@@ -73,32 +78,4 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
-
-    @Transactional
-    @GetMapping("/test")
-    @CrossOrigin(origins = "http://localhost:8080")
-    public void test() {
-        UsuarioEntity usuarioEntity = new UsuarioEntity();
-//usuarioEntity.setId(1L);
-        usuarioEntity.setCpf("12345678910");
-        usuarioEntity.setEmail("matheus@test.com");
-        usuarioEntity.setPassword("123456");
-        usuarioEntity.setNomeCompleto("Matheus do Prado Marques da Costa");
-        UsuarioEntity usuarioSalvo = usuarioRepository.save(usuarioEntity);
-
-        EnderecoEntity enderecoEntity = new EnderecoEntity();
-        enderecoEntity.setRua("Testando a rua!");
-        enderecoEntity.setNumero(123);
-        enderecoEntity.setBairro("Centro");
-        enderecoEntity.setComplemento("Casa");
-        enderecoEntity.setCep("12345-123");
-        enderecoEntity.setUsuario(usuarioSalvo);
-        enderecoRepository.save(enderecoEntity);
-        System.out.println(enderecoRepository.findAll());
-
-        System.out.println(usuarioRepository.findAll());
-
-    }
-
-
 }
