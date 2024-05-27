@@ -79,10 +79,14 @@
             event.preventDefault();
             const userData = JSON.parse(sessionStorage.getItem('userData'));
             const entregaData = JSON.parse(sessionStorage.getItem('entregaData'));
+            const carrinhoData = JSON.parse(sessionStorage.getItem('carrinhoData'));
+
             if (!userData) {
                 window.location.href = 'login.html';
             } else {
-                const id = userData.id;
+                const idUsuariao = userData.id;
+                const idEntrega = entregaData.id;
+                const valorTotal = carrinhoData;
                 const numeroCartao = document.getElementById('numeroCartao').value;
                 const dataExpiracao = document.getElementById('dataExpiracao').value;
                 const cvv = document.getElementById('cvv').value;
@@ -94,7 +98,7 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ id, numeroCartao, dataExpiracao, cvv, nomeCompleto, cpf, entregaData })
+                        body: JSON.stringify({ numeroCartao, dataExpiracao, cvv, nomeCompleto, cpf, idUsuariao, idEntrega, valorTotal })
                     });
                     if (response.status === 200) {
                         alert('Pagamento Realizado com sucesso, muito obrigado volte sempre!');

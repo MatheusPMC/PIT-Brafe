@@ -84,22 +84,8 @@
 							if (!userData) {
 								window.location.href = 'login.html';
                 			}
-                            const response = await fetch('http://localhost:8080/pagamento', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({ valor })
-                            });
-            
-                            if (response.status === 200) {
-                                const data = await response.json();
-    
-                                sessionStorage.setItem('pagamentoData', JSON.stringify(data));
+                                sessionStorage.setItem('carrinhoData', JSON.stringify(valor));
                                 window.location.href = 'endereco-entrega.html';
-                            } else {
-                                alert('Login failed');
-                            }
                         } catch (error) {
                             console.error('Error:', error);
                             alert('An error occurred');

@@ -3,6 +3,9 @@ package com.Brafe.Brafe.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Getter
 @Setter
@@ -30,4 +33,7 @@ public class ProdutoEntity {
 
     @Column(name = "IMAGEM")
     private String imagem;
+
+    @ManyToMany(mappedBy = "produtos")
+    private Set<CompraEntity> compras = new HashSet<>();
 }

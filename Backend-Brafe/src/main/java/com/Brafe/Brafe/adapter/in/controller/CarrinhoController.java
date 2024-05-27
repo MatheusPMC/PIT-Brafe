@@ -22,7 +22,7 @@ public class CarrinhoController {
         compraRequest.getProdutos().forEach(produto -> {
             if (produto.getQuantidade() > 0) {
                 produtoComprado.add(produto);
-                valor.updateAndGet(v -> v + produto.getPreco());
+                valor.updateAndGet(v -> v + (produto.getPreco() * produto.getQuantidade()));
             }
         });
 

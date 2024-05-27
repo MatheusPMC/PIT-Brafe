@@ -10,22 +10,26 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @ToString
-@Table(name = "TAB_USUARIO")
-public class UsuarioEntity {
+@Table(name = "TAB_PAGAMENTO")
+public class PagamentoEntity {
     @Id
-    @Column(name = "ID_USUARIO")
+    @Column(name = "ID_PAGAMENTO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "EMAIL")
-    private String email;
+    @Column(name = "NUMERO_CARTAO")
+    private String numeroCartao;
 
-    @Column(name = "PASSWORD")
-    private String password;
+    @Column(name = "DATA_EXPIRACAO")
+    private String dataExpiracao;
+
+    @Column(name = "CVV")
+    private Integer cvv;
 
     @Column(name = "NOME_COMPLETO")
     private String nomeCompleto;
 
     @Column(name = "CPF")
     private String cpf;
+
 }

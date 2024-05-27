@@ -84,7 +84,7 @@
             event.preventDefault();
             const formData = new FormData(this);
             const produtos = [];
-    
+
             for (const entry of formData.entries()) {
                 const [name, value] = entry;
                 if (name.endsWith('_quantidade') || name.endsWith('_manual')) {
@@ -99,9 +99,14 @@
             }
 
             let quantidadeTotal = 0;
+            let total = 0;
             produtos.forEach(produto => {
-                quantidadeTotal = quantidadeTotal + produto.quantidade
-            })
+                const quantidade = parseInt(produto.quantidade); // Converta para número inteiro
+                const preco = parseFloat(produto.preco); // Converta para número em ponto flutuante
+                total += quantidade * preco; // Some o preço multiplicado pela quantidade
+                quantidadeTotal += quantidade; // Acumule a quantidade total
+            });
+
 
             if (quantidadeTotal > 0) {
                 try {

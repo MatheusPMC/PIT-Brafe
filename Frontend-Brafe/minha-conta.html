@@ -74,6 +74,8 @@
                 document.getElementById('cadastroForm').addEventListener('submit', async function(event) {
                     event.preventDefault();
 
+                    const userData = JSON.parse(sessionStorage.getItem('userData'));
+                    
                     const id = userData.id;
                     const email = document.getElementById('email').value;
                     const password = document.getElementById('password').value;

@@ -3,12 +3,8 @@ package com.Brafe.Brafe.adapter.in.controller;
 
 import com.Brafe.Brafe.adapter.in.model.Login;
 import com.Brafe.Brafe.adapter.in.model.Usuario;
-import com.Brafe.Brafe.adapter.out.repository.EnderecoRepository;
-import com.Brafe.Brafe.adapter.out.repository.ProdutoRepository;
-import com.Brafe.Brafe.adapter.out.repository.UsuarioRepository;
-import com.Brafe.Brafe.domain.entity.EnderecoEntity;
-import com.Brafe.Brafe.domain.entity.ProdutoEntity;
-import com.Brafe.Brafe.domain.entity.UsuarioEntity;
+import com.Brafe.Brafe.adapter.out.repository.*;
+import com.Brafe.Brafe.domain.entity.*;
 import com.Brafe.Brafe.port.in.UsuarioCorePort;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,6 +25,8 @@ public class MockController {
     private final UsuarioRepository usuarioRepository;
     private final EnderecoRepository enderecoRepository;
     private final ProdutoRepository produtoRepository;
+    private final PagamentoRepository pagamentoRepository;
+    private final CompraRepository compraRepository;
 
     @GetMapping("/test")
     public void test() {
@@ -44,7 +44,7 @@ public class MockController {
         enderecoEntity.setComplemento("Casa");
         enderecoEntity.setCep("12345-123");
         enderecoEntity.setUsuario(usuarioSalvo);
-        enderecoRepository.save(enderecoEntity);
+        EnderecoEntity enderecoS = enderecoRepository.save(enderecoEntity);
 
         List<ProdutoEntity> list = new ArrayList<>();
         ProdutoEntity produto = new ProdutoEntity();
@@ -63,6 +63,26 @@ public class MockController {
         produto2.setImagem("img/cafe-6.jpg");
         list.add(produto2);
 
-        produtoRepository.saveAll(list);
+        List<ProdutoEntity> produtoS = produtoRepository.saveAll(list);
+
+        Set<ProdutoEntity> produtoSet = new HashSet<ProdutoEntity>(produtoS);
+        PagamentoEntity pagamentoEntity = new PagamentoEntity();
+        pagamentoEntity.setCpf("123456789");
+        pagamentoEntity.setCvv(123);
+        pagamentoEntity.setDataExpiracao("0102");
+        pagamentoEntity.setNumeroCartao("1234123412341234");
+        pagamentoEntity.setDataExpiracao("07/06");
+        pagamentoEntity.setNomeCompleto("Matheus");
+
+        PagamentoEntity pagamentoS = pagamentoRepository.save(pagamentoEntity);
+        CompraEntity compraEntity = new CompraEntity();
+        compraEntity.setEndereco(enderecoS);
+        compraEntity.setUsuario(usuarioSalvo);
+        compraEntity.setPagamento(pagamentoS);
+        compraEntity.setProdutos(produtoSet);
+        compraEntity.setValorTotal(50.0);
+
+        compraRepository.save(compraEntity);
+
     }
 }
