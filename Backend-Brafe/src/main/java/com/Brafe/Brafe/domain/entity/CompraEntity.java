@@ -44,7 +44,7 @@ public class CompraEntity {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "TEM",
+            name = "COMPRA_PRODUTO",
             joinColumns = @JoinColumn(name = "ID_COMPRA", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "ID_PRODUTO", nullable = false)
     )
