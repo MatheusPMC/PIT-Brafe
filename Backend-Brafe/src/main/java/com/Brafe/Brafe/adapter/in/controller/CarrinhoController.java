@@ -20,6 +20,7 @@ public class CarrinhoController {
 
         AtomicReference<Double> valor = new AtomicReference<>(0.0);
         compraRequest.getProdutos().forEach(produto -> {
+            System.out.println(produto.getId());
             if (produto.getQuantidade() > 0) {
                 produtoComprado.add(produto);
                 valor.updateAndGet(v -> v + (produto.getPreco() * produto.getQuantidade()));

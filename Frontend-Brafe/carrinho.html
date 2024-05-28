@@ -47,6 +47,8 @@
 		} else {
 			const container = document.getElementById('produtos-container');
 			carrinhoData.produtos.forEach(produto => {
+
+				console.log(produto)
 				const produtoDiv = document.createElement('div');
 				produtoDiv.className = 'carrinho';
 
@@ -59,7 +61,6 @@
 				container.appendChild(produtoDiv);
 			});
 
-			console.log(carrinhoData.frete)
 			const containerFrete = document.getElementById('produtos-container');
 			const financeiroDiv = document.createElement('div');
 			financeiroDiv.className = 'carrinho';
@@ -76,7 +77,9 @@
 
 		document.getElementById('carrinhoForm').addEventListener('submit', async function(event) {
                         event.preventDefault();            
-						const valor = carrinhoData.valorTotal.toFixed(2);
+						const valor = carrinhoData.valorCompra.toFixed(2);
+						const frete = carrinhoData.frete.toFixed(2);
+						const valorTotal = carrinhoData.valorTotal.toFixed(2);
 			
 						try {
 								const userData = JSON.parse(sessionStorage.getItem('userData'));
@@ -84,7 +87,9 @@
 							if (!userData) {
 								window.location.href = 'login.html';
                 			}
-                                sessionStorage.setItem('carrinhoData', JSON.stringify(valor));
+							sessionStorage.setItem('valorData', JSON.stringify(valor));
+							sessionStorage.setItem('freteData', JSON.stringify(frete));
+							sessionStorage.setItem('valorTotalData', JSON.stringify(valorTotal));
                                 window.location.href = 'endereco-entrega.html';
                         } catch (error) {
                             console.error('Error:', error);
@@ -92,20 +97,6 @@
                         }
                     });
 	</script>
-
-	<section class="assine">
-		<div class="container">
-			<div class="assine-info">
-				<h2>Assine Nossa Newsletter</h2>
-				<p>promoções e eventos mensais</p>
-			</div>
-			<form>
-				<label>E-mail</label>
-				<input type="text" placeholder="Digite seu e-mail">
-				<button type="submit">Enviar</button>
-			</form>
-		</div>
-	</section>
 	
 	<footer class="footer">
 		<div class="container">

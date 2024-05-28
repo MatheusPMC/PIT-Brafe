@@ -17,4 +17,6 @@ public interface ProdutoMapper {
     ProdutoMapper INSTANCE = Mappers.getMapper(ProdutoMapper.class);
 
     List<Produto> map(List<ProdutoEntity> obj);
+    ProdutoEntity map(Produto obj);
+    Produto map(ProdutoEntity obj);
 }

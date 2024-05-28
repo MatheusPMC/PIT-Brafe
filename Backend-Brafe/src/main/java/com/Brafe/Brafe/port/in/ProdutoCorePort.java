@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ProdutoCorePort {
     List<Produto> buscarProdutos();
+
+    Produto criarProduto(Produto produto);
 }

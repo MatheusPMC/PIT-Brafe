@@ -2,6 +2,8 @@ package com.Brafe.Brafe.adapter.in.model;
 
 import lombok.*;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -17,5 +19,8 @@ public class Pagamento {
     private String cpf;
     private Long idUsuariao;
     private Long idEntrega;
+    private Double valor;
+    private Double frete;
     private Double valorTotal;
+    private List<Produto> produtos;
 }

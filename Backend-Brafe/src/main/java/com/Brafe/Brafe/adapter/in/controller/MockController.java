@@ -31,7 +31,7 @@ public class MockController {
     @GetMapping("/test")
     public void test() {
         UsuarioEntity usuarioEntity = new UsuarioEntity();
-        usuarioEntity.setCpf("12345678910");
+        usuarioEntity.setCpf("123456123");
         usuarioEntity.setEmail("matheus@test.com");
         usuarioEntity.setPassword("123456");
         usuarioEntity.setNomeCompleto("Matheus do Prado Marques da Costa");
@@ -48,6 +48,7 @@ public class MockController {
 
         List<ProdutoEntity> list = new ArrayList<>();
         ProdutoEntity produto = new ProdutoEntity();
+        produto.setId(1L);
         produto.setDescricao("test");
         produto.setNome("test");
         produto.setPreco(5.0);
@@ -56,6 +57,7 @@ public class MockController {
         list.add(produto);
 
         ProdutoEntity produto2 = new ProdutoEntity();
+        produto.setId(2L);
         produto2.setDescricao("test2");
         produto2.setNome("test2");
         produto2.setPreco(10.0);
@@ -80,6 +82,8 @@ public class MockController {
         compraEntity.setUsuario(usuarioSalvo);
         compraEntity.setPagamento(pagamentoS);
         compraEntity.setProdutos(produtoSet);
+        compraEntity.setValor(40.0);
+        compraEntity.setFrete(10.0);
         compraEntity.setValorTotal(50.0);
 
         compraRepository.save(compraEntity);

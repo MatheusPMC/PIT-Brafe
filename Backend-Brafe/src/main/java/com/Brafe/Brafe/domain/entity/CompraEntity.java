@@ -24,6 +24,12 @@ public class CompraEntity {
     @Column(name = "ID_COMPRA")
     private Long id;
 
+    @Column(name = "VALOR")
+    private Double valor;
+
+    @Column(name = "FRETE")
+    private Double frete;
+
     @Column(name = "VALOR_TOTAL")
     private Double valorTotal;
 

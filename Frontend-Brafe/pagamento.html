@@ -53,19 +53,6 @@
             </div>
         </div>
     </section>
-	<section class="assine">
-		<div class="container">
-			<div class="assine-info">
-				<h2>Assine Nossa Newsletter</h2>
-				<p>promoções e eventos mensais</p>
-			</div>
-			<form>
-				<label>E-mail</label>
-				<input type="text" placeholder="Digite seu e-mail">
-				<button type="submit">Enviar</button>
-			</form>
-		</div>
-	</section>
 	<footer class="footer">
 		<div class="container">
 			<p>Este é um projeto PIT. Matheus do Prado Marques da Costa. <br>RGM: 23867078. <br>Faculdade: Unifran.<br>Endereço: Rua Alguma coisa N: 123 Bairro: NSenhora.<br>Contato: (xx)xxxxx-yyyy.</p>
@@ -79,14 +66,22 @@
             event.preventDefault();
             const userData = JSON.parse(sessionStorage.getItem('userData'));
             const entregaData = JSON.parse(sessionStorage.getItem('entregaData'));
+            const valorData = JSON.parse(sessionStorage.getItem('valorData'));
+            const freteData = JSON.parse(sessionStorage.getItem('freteData'));
+            const valorTotalData = JSON.parse(sessionStorage.getItem('valorTotalData'));
             const carrinhoData = JSON.parse(sessionStorage.getItem('carrinhoData'));
+            const produtoData = JSON.parse(sessionStorage.getItem('produtoData'));
 
             if (!userData) {
                 window.location.href = 'login.html';
             } else {
+                console.log(produtoData)
                 const idUsuariao = userData.id;
                 const idEntrega = entregaData.id;
-                const valorTotal = carrinhoData;
+                const valor = valorData;
+                const frete = freteData;
+                const valorTotal = valorTotalData;
+                const produtos = produtoData;
                 const numeroCartao = document.getElementById('numeroCartao').value;
                 const dataExpiracao = document.getElementById('dataExpiracao').value;
                 const cvv = document.getElementById('cvv').value;
@@ -98,7 +93,7 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ numeroCartao, dataExpiracao, cvv, nomeCompleto, cpf, idUsuariao, idEntrega, valorTotal })
+                        body: JSON.stringify({ numeroCartao, dataExpiracao, cvv, nomeCompleto, cpf, idUsuariao, idEntrega, valor, frete, valorTotal, produtos })
                     });
                     if (response.status === 200) {
                         alert('Pagamento Realizado com sucesso, muito obrigado volte sempre!');

@@ -41,8 +41,10 @@
                     produtosContainer.innerHTML = '';
                     if (data && Array.isArray(data)) {
                         data.forEach((produto, index) => {
+
                             const produtoHTML = `
                                 <li class="produtos-item">
+                                    <input type="hidden" name="produto${index + 1}_id" value="${produto.id}">
                                     <input type="hidden" name="produto${index + 1}_nome" value="${produto.nome}">
                                     <input type="hidden" name="produto${index + 1}_preco" value="${produto.preco}">
                                     <input type="hidden" name="produto${index + 1}_descricao" value="${produto.descricao}">
@@ -90,6 +92,7 @@
                 if (name.endsWith('_quantidade') || name.endsWith('_manual')) {
                     const produto = {};
                     const prefix = name.substring(0, name.lastIndexOf('_'));
+                    produto.id = formData.get(`${prefix}_id`);
                     produto.nome = formData.get(`${prefix}_nome`);
                     produto.preco = formData.get(`${prefix}_preco`);
                     produto.descricao = formData.get(`${prefix}_descricao`);
@@ -109,6 +112,7 @@
 
 
             if (quantidadeTotal > 0) {
+                sessionStorage.setItem('produtoData', JSON.stringify(produtos));
                 try {
                     const userData = JSON.parse(sessionStorage.getItem('userData'));
                     if (!userData) {
