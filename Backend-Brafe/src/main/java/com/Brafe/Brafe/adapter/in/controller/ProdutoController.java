@@ -35,6 +35,6 @@ public class ProdutoController {
         Produto resposta = produtoCore.criarProduto(produtoRequest);
 
         log.info("Saindo do {}: {}", nomeMetodo, HttpStatus.CREATED);
-        return ResponseEntity.status(HttpStatus.OK).body(resposta);
+        return ResponseEntity.status(HttpStatus.CREATED).body(resposta);
     }
 }
