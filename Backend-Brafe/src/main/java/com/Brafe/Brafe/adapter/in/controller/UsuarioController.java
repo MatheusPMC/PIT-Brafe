@@ -5,19 +5,12 @@ import com.Brafe.Brafe.adapter.in.model.Usuario;
 import com.Brafe.Brafe.adapter.out.repository.EnderecoRepository;
 import com.Brafe.Brafe.adapter.out.repository.ProdutoRepository;
 import com.Brafe.Brafe.adapter.out.repository.UsuarioRepository;
-import com.Brafe.Brafe.domain.entity.EnderecoEntity;
-import com.Brafe.Brafe.domain.entity.ProdutoEntity;
-import com.Brafe.Brafe.domain.entity.UsuarioEntity;
 import com.Brafe.Brafe.port.in.UsuarioCorePort;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("usuario")
@@ -25,12 +18,6 @@ import java.util.List;
 @Slf4j
 public class UsuarioController {
     private final UsuarioCorePort usuarioCore;
-    private final UsuarioRepository usuarioRepository;
-    private final EnderecoRepository enderecoRepository;
-    private final ProdutoRepository produtoRepository;
-
-    private Usuario usuario;
-
 
     @PostMapping("/login")
     public ResponseEntity<Usuario> login(@RequestBody Login loginRequest) {
@@ -64,10 +51,10 @@ public class UsuarioController {
     }
 
     @PutMapping("/atualizar")
-    public ResponseEntity<Usuario> atualizar(@RequestBody Usuario cadastroRequest) {
+    public ResponseEntity<Usuario> atualizar(@RequestBody Usuario atualizarRequest) {
         String nomeMetodo = Thread.currentThread().getStackTrace()[1].getMethodName();
-        log.info("Entrou no {}: {}", nomeMetodo, cadastroRequest);
-        Usuario usuario = usuarioCore.atualizar(cadastroRequest);
+        log.info("Entrou no {}: {}", nomeMetodo, atualizarRequest);
+        Usuario usuario = usuarioCore.atualizar(atualizarRequest);
 
         if (usuario != null) {
             log.info("Saindo do {}: {}", nomeMetodo, HttpStatus.OK);

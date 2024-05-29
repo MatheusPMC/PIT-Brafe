@@ -28,7 +28,8 @@ public class PagamentoCore implements PagamentoCorePort {
 
         List<ProdutoEntity> produtoEntities = new ArrayList<>();
         pagamentoRequest.getProdutos().forEach(produto -> {
-            var prodt = produtoRepository.findById(produto.getId()).get();
+            Optional<ProdutoEntity> prod = produtoRepository.findById(produto.getId());
+            ProdutoEntity prodt = prod.orElseThrow(() -> new RuntimeException("Produto não existente"));
             prodt.setQuantidade(prodt.getQuantidade() - produto.getQuantidade());
             produtoEntities.add(prodt);
         });
@@ -42,7 +43,6 @@ public class PagamentoCore implements PagamentoCorePort {
         Optional<UsuarioEntity> usuarioEntityOptional = usuarioRepository.findById(pagamentoRequest.getIdUsuariao());
         UsuarioEntity usuarioEntity = usuarioEntityOptional.orElseThrow(() -> new RuntimeException("Usuario não existente"));
 
-        System.out.println(pagamentoMapper.map(pagamentoRequest));
         PagamentoEntity pagamentoEntity = pagamentoRepository.save(pagamentoMapper.map(pagamentoRequest));
 
         CompraEntity compraEntity = new CompraEntity();
@@ -50,9 +50,9 @@ public class PagamentoCore implements PagamentoCorePort {
         compraEntity.setUsuario(usuarioEntity);
         compraEntity.setPagamento(pagamentoEntity);
         compraEntity.setProdutos(produtoEntitySet);
-        compraEntity.setValor(40.0);
-        compraEntity.setFrete(10.0);
-        compraEntity.setValorTotal(50.0);
+        compraEntity.setValor(pagamentoRequest.getValor());
+        compraEntity.setFrete(pagamentoRequest.getFrete());
+        compraEntity.setValorTotal(pagamentoRequest.getValorTotal());
         compraRepository.save(compraEntity);
         return true;
     }

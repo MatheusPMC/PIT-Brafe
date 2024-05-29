@@ -23,14 +23,20 @@ public class PagamentoController {
         String nomeMetodo = Thread.currentThread().getStackTrace()[1].getMethodName();
         log.info("Entrou no {}", nomeMetodo);
 
-        System.out.println(pagamentoRequest);
+        boolean resultado;
+        try {
+            resultado = pagamentoCore.salvarPagamento(pagamentoRequest);
+        } catch (RuntimeException e) {
+            log.error("Erro no {}: mensagem: {}", nomeMetodo, e.getMessage());
+            resultado = false;
+        }
 
-        if (pagamentoCore.salvarPagamento(pagamentoRequest)) {
+        if (resultado) {
             log.info("Saindo do {}: {}", nomeMetodo, HttpStatus.OK);
-            return ResponseEntity.status(HttpStatus.OK).body(true);
+            return ResponseEntity.status(HttpStatus.OK).body(resultado);
         } else {
             log.info("Saindo do {}: {}", nomeMetodo, HttpStatus.INTERNAL_SERVER_ERROR);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultado);
         }
     }
 }

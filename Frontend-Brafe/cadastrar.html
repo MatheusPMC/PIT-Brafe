@@ -68,6 +68,7 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const nomeCompleto = document.getElementById('nomeCompleto').value;
+            const cpf = document.getElementById('cpf').value;
 
             try {
                 const response = await fetch('http://localhost:8080/usuario/cadastro', {
@@ -84,8 +85,7 @@
                     window.location.href = 'login.html';
                 } else {
                     const errorData = await response.json();
-                    document.getElementById('errorMessage').textContent = errorData.message;
-                    document.getElementById('errorMessage').style.display = 'block';
+                    alert('Ocorreu um erro ao cadastrar, verefique se sua conta já é existente, ou tente novamente!');
                 }
             } catch (error) {
                 console.error('Error:', error);

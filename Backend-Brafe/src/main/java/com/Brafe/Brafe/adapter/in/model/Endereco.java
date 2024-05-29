@@ -14,16 +14,10 @@ import lombok.*;
 @ToString
 public class Endereco {
     private Long id;
-
     private String rua;
-
     private Integer numero;
-
     private String bairro;
-
     private String complemento;
-
     private String cep;
-
     private Long idUsuario;
 }
