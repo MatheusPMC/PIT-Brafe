@@ -57,13 +57,31 @@ public class MockController {
         list.add(produto);
 
         ProdutoEntity produto2 = new ProdutoEntity();
-        produto.setId(2L);
+        produto2.setId(2L);
         produto2.setDescricao("test2");
         produto2.setNome("test2");
         produto2.setPreco(10.0);
         produto2.setQuantidade(10);
         produto2.setImagem("img/cafe-6.jpg");
         list.add(produto2);
+
+        ProdutoEntity produto3 = new ProdutoEntity();
+        produto3.setId(3L);
+        produto3.setDescricao("test3");
+        produto3.setNome("test3");
+        produto3.setPreco(20.0);
+        produto3.setQuantidade(2);
+        produto3.setImagem("img/cafe-4.jpg");
+        list.add(produto3);
+
+        ProdutoEntity produto4 = new ProdutoEntity();
+        produto4.setId(4L);
+        produto4.setDescricao("test4");
+        produto4.setNome("test4");
+        produto4.setPreco(30.0);
+        produto4.setQuantidade(3);
+        produto4.setImagem("img/cafe-3.jpg");
+        list.add(produto4);
 
         List<ProdutoEntity> produtoS = produtoRepository.saveAll(list);
 
